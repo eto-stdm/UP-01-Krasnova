@@ -1,0 +1,54 @@
+﻿<Page x:Class="UP_01_Krasnova.Pages.AuthLogPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:UP_01_Krasnova.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AuthLogPage">
+
+    <Grid>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel x:Name="LoginSP" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="Вход в аккаунт" FontSize="24" Margin="10" HorizontalAlignment="Center"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="Логин:" FontSize="20" Margin="10"/>
+                    <TextBox x:Name="LoginLoginTB" VerticalContentAlignment="Center" Width="250" Margin="0, 10, 10, 10"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="Пароль:" FontSize="20" Margin="10"/>
+                    <TextBox x:Name="LoginPasswordTB" VerticalContentAlignment="Center" Width="250" Margin="0, 10, 10, 10"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button x:Name="LoginBtn" Content="Войти" FontSize="14" Height="30" Width="120" Margin="10" Click="LoginBtn_Click"/>
+                    <Button x:Name="ChangeToRegBtn" Content="Хочу зарегистрироваться" FontSize="14" Height="30" Width="180" Margin="10, 10, 10, 10" Click="ChangeToRegBtn_Click"/>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel x:Name="AuthSP" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="Регистрация" Margin="10, 0, 10, 10" FontSize="24" HorizontalAlignment="Center"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="Логин:" Margin="10" FontSize="20"/>
+                    <TextBox x:Name="RegLoginTB" VerticalContentAlignment="Center" Width="200" Margin="0, 10, 10, 10"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="Пароль:" Margin="10" FontSize="20"/>
+                    <TextBox x:Name="RegPasswordTB" VerticalContentAlignment="Center" Width="200" Margin="0, 10, 10, 10"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="Email:" Margin="10" FontSize="20"/>
+                    <TextBox x:Name="RegEmailTB" VerticalContentAlignment="Center" Width="200" Margin="0, 10, 10, 10"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="Отображаемое имя:" Margin="10" FontSize="20"/>
+                    <TextBox x:Name="RegUsernameTB" VerticalContentAlignment="Center" Width="200" Margin="0, 10, 10, 10"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button x:Name="RegistrBtn" Content="Зарегистрироваться" FontSize="14" Height="30" Width="150" Margin="10, 10, 10, 10" Click="RegistrBtn_Click"/>
+                    <Button x:Name="ChangeToLogBtn" Content="Уже есть аккаунт" FontSize="14" Height="30" Width="150" Margin="10, 10, 10, 10" Click="ChangeToLogBtn_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>
