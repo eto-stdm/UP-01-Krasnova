@@ -231,6 +231,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\admin.png" />
+    <Resource Include="Images\author.png" />
+    <Resource Include="Images\bookcatalog.png" />
+    <Resource Include="Images\booklist.png" />
+    <Resource Include="Images\profile.png" />
+    <Resource Include="Images\warning.png" />
     <Content Include="up11_1_books.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>up11_1_books.Context.cs</LastGenOutput>

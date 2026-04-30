@@ -39,7 +39,7 @@ namespace UP_01_Krasnova.Pages
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(LoginLoginTB.Text) || string.IsNullOrWhiteSpace(LoginPasswordTB.Text))
+            if (string.IsNullOrWhiteSpace(LoginLoginTB.Text) || string.IsNullOrWhiteSpace(LoginPasswordPB.Password))
             {
                 MessageBox.Show("Заполните необходимые поля!");
             }
@@ -48,7 +48,7 @@ namespace UP_01_Krasnova.Pages
                 List<User> users = Core.Context.User.ToList();
 
                 User curruser = users.FirstOrDefault(u => u.Login == LoginLoginTB.Text);
-                if (curruser != null && curruser.Password == LoginPasswordTB.Text)
+                if (curruser != null && curruser.Password == LoginPasswordPB.Password)
                 {
                     State.CurrentUserID = curruser.UserID;
                     NavigationService.Navigate(new MainPage());
@@ -61,9 +61,9 @@ namespace UP_01_Krasnova.Pages
         {
 
             if (string.IsNullOrWhiteSpace(RegLoginTB.Text) ||
-                string.IsNullOrWhiteSpace(RegPasswordTB.Text) ||
+                string.IsNullOrWhiteSpace(RegPasswordPB.Password) ||
                 string.IsNullOrWhiteSpace(RegEmailTB.Text) ||
-                string.IsNullOrWhiteSpace(RegPasswordTB.Text))
+                string.IsNullOrWhiteSpace(RegUsernameTB.Text))
             {
                 MessageBox.Show("Данные не заполнены!");
             }
@@ -82,7 +82,7 @@ namespace UP_01_Krasnova.Pages
                         User newUser = new User()
                         {
                             Login = RegLoginTB.Text,
-                            Password = RegPasswordTB.Text,
+                            Password = RegPasswordPB.Password,
                             Email = RegEmailTB.Text,
                             Username = RegUsernameTB.Text,
                             RoleID = 3,
