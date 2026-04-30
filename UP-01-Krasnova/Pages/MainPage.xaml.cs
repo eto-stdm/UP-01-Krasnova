@@ -30,37 +30,37 @@ namespace UP_01_Krasnova.Pages
             switch (user.Role.Name)
             {
                 case "Администратор":
-                    AdminMI.Visibility = Visibility.Visible;
+                    AdminBtn.Visibility = Visibility.Visible;
                     break;
                 case "Автор":
-                    AuthorMI.Visibility = Visibility.Visible;
+                    AuthorBtn.Visibility = Visibility.Visible;
                     break;
                 default: break;
             }
-            if (user.IsFrozen) { WarningMI.Visibility = Visibility.Visible; }
+            if (user.IsFrozen) { WarningBtn.Visibility = Visibility.Visible; }
         }
 
         private void SideBarItem_Click(object sender, RoutedEventArgs e)
         {
-            var item = (sender as MenuItem).Name;
+            var item = (sender as Button).Name;
             switch (item)
             {
-                case "BookCatalogMI":
+                case "BookCatalogBtn":
                     MainPageFrame.NavigationService.Navigate(new BookCatalogPage());
                     break;
-                case "BookListMI":
+                case "BookListBtn":
                     MainPageFrame.NavigationService.Navigate(new BookListPage());
                     break;
-                case "ProfileMI":
+                case "ProfileBtn":
                     MainPageFrame.NavigationService.Navigate(new ProfilePage());
                     break;
-                case "AdminMI":
+                case "AdminBtn":
                     MainPageFrame.NavigationService.Navigate(new AdminPage());
                     break;
-                case "AuthorMI":
+                case "AuthorBtn":
                     MainPageFrame.NavigationService.Navigate(new AuthorPage());
                     break;
-                case "WarningMI":
+                case "WarningBtn":
                     MessageBox.Show("Ваш аккаунт заморожен!");
                     break;
                 default: break;

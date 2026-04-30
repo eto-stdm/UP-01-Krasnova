@@ -21,38 +21,26 @@
         <TextBlock Grid.Column="0" Grid.Row="0" Text="ШутИКроль" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <TextBlock Grid.Column="1" Grid.Row="0" Text="Читай, Пиши и не спиши" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-        <Menu Grid.Column="0" Grid.Row="1">
-            <MenuItem x:Name="BookCatalogMI" Height="60" Click="SideBarItem_Click">
-                <MenuItem.Header>
-                    <Image Source="/Images/bookcatalog.png" Margin="10"/>
-                </MenuItem.Header>
-            </MenuItem>
-            <MenuItem x:Name="BookListMI" Width="100" Height="60" Click="SideBarItem_Click">
-                <MenuItem.Header>
-                    <Image Source="/Images/booklist.png" Margin="10"/>
-                </MenuItem.Header>
-            </MenuItem>
-            <MenuItem x:Name="ProfileMI" Width="100" Height="60" Click="SideBarItem_Click">
-                <MenuItem.Header>
-                    <Image Source="/Images/profile.png" Margin="10"/>
-                </MenuItem.Header>
-            </MenuItem>
-            <MenuItem x:Name="AdminMI" Width="100" Height="60" Click="SideBarItem_Click" Visibility="Collapsed">
-                <MenuItem.Header>
-                    <Image Source="/Images/admin.png" Margin="10"/>
-                </MenuItem.Header>
-            </MenuItem>
-            <MenuItem x:Name="AuthorMI" Width="100" Height="60" Click="SideBarItem_Click" Visibility="Collapsed">
-                <MenuItem.Header>
-                    <Image Source="/Images/author.png" Margin="10"/>
-                </MenuItem.Header>
-            </MenuItem>
-            <MenuItem x:Name="WarningMI" Width="100" Height="60" Click="SideBarItem_Click" Visibility="Collapsed">
-                <MenuItem.Header>
-                    <Image Source="/Images/warning.png" Margin="10"/>
-                </MenuItem.Header>
-            </MenuItem>
-        </Menu>
+        <StackPanel Grid.Column="0" Grid.Row="1" Background="LightSlateGray">
+            <Button x:Name="BookCatalogBtn" Height="60" Click="SideBarItem_Click">
+                <Image Source="/Images/bookcatalog.png" Margin="5"/>
+            </Button>
+            <Button x:Name="BookListBtn" Height="60" Click="SideBarItem_Click">
+                <Image Source="/Images/booklist.png" Margin="5"/>
+            </Button>
+            <Button x:Name="ProfileBtn" Height="60" Click="SideBarItem_Click">
+                <Image Source="/Images/profile.png" Margin="5"/>
+            </Button>
+            <Button x:Name="AdminBtn" Height="60" Visibility="Collapsed" Click="SideBarItem_Click">
+                <Image Source="/Images/admin.png" Margin="5"/>
+            </Button>
+            <Button x:Name="AuthorBtn" Height="60" Visibility="Collapsed" Click="SideBarItem_Click">
+                <Image Source="/Images/author.png" Margin="5"/>
+            </Button>
+            <Button x:Name="WarningBtn" Height="60" Visibility="Collapsed" Click="SideBarItem_Click">
+                <Image Source="/Images/warning.png" Margin="5"/>
+            </Button>
+        </StackPanel>
 
         <Frame x:Name="MainPageFrame" Grid.Column="1" Grid.Row="1" NavigationUIVisibility="Hidden" Source="/Pages/BookCatalogPage.xaml"/>
     </Grid>
