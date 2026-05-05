@@ -20,9 +20,11 @@ namespace UP_01_Krasnova.Pages
     /// </summary>
     public partial class BookPage : Page
     {
-        public BookPage()
+        public Book book { get; set; }
+        public BookPage(Book book)
         {
             InitializeComponent();
+            this.book = book;
         }
     }
 }

@@ -26,6 +26,7 @@ namespace UP_01_Krasnova
         }
     
         public virtual DbSet<Book> Book { get; set; }
+        public virtual DbSet<BookGenre> BookGenre { get; set; }
         public virtual DbSet<Genre> Genre { get; set; }
         public virtual DbSet<ListType> ListType { get; set; }
         public virtual DbSet<ReadingList> ReadingList { get; set; }

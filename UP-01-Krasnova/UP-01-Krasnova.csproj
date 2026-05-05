@@ -70,12 +70,16 @@
     <Compile Include="Book.cs">
       <DependentUpon>up11_1_books.tt</DependentUpon>
     </Compile>
+    <Compile Include="BookGenre.cs">
+      <DependentUpon>up11_1_books.tt</DependentUpon>
+    </Compile>
     <Compile Include="Genre.cs">
       <DependentUpon>up11_1_books.tt</DependentUpon>
     </Compile>
     <Compile Include="ListType.cs">
       <DependentUpon>up11_1_books.tt</DependentUpon>
     </Compile>
+    <Compile Include="Partal\PartalBook.cs" />
     <Compile Include="ReadingList.cs">
       <DependentUpon>up11_1_books.tt</DependentUpon>
     </Compile>
@@ -237,19 +241,22 @@
     <Resource Include="Images\booklist.png" />
     <Resource Include="Images\profile.png" />
     <Resource Include="Images\warning.png" />
+    <Resource Include="Images\Image.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="up11_1_books.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>up11_1_books.Context.cs</LastGenOutput>
       <DependentUpon>up11_1_books.edmx</DependentUpon>
+      <LastGenOutput>up11_1_books.Context.cs</LastGenOutput>
     </Content>
     <Content Include="up11_1_books.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>up11_1_books.edmx</DependentUpon>
       <LastGenOutput>up11_1_books.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

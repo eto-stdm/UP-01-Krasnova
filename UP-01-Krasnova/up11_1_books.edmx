@@ -19,9 +19,9 @@
         </EntityType>
         <EntityType Name="BookGenre">
           <Key>
-            <PropertyRef Name="BookID" />
-            <PropertyRef Name="GenreID" />
+            <PropertyRef Name="BookGenreID" />
           </Key>
+          <Property Name="BookGenreID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="BookID" Type="int" Nullable="false" />
           <Property Name="GenreID" Type="int" Nullable="false" />
         </EntityType>
@@ -413,11 +413,21 @@
           <Property Name="AuthorID" Type="Int32" Nullable="false" />
           <Property Name="IsFrozen" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="User" Relationship="Self.FK_Book_User" FromRole="Book" ToRole="User" />
+          <NavigationProperty Name="BookGenre" Relationship="Self.FK_BookGenre_Book" FromRole="Book" ToRole="BookGenre" />
           <NavigationProperty Name="ReadingList" Relationship="Self.FK_ReadingList_Book" FromRole="Book" ToRole="ReadingList" />
           <NavigationProperty Name="Report" Relationship="Self.FK_Report_Book" FromRole="Book" ToRole="Report" />
           <NavigationProperty Name="Review" Relationship="Self.FK_Review_Book" FromRole="Book" ToRole="Review" />
           <NavigationProperty Name="UnFreezeApplication" Relationship="Self.FK_UnFreezeApplication_Book" FromRole="Book" ToRole="UnFreezeApplication" />
-          <NavigationProperty Name="Genre" Relationship="Self.BookGenre" FromRole="Book" ToRole="Genre" />
+        </EntityType>
+        <EntityType Name="BookGenre">
+          <Key>
+            <PropertyRef Name="BookGenreID" />
+          </Key>
+          <Property Name="BookGenreID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookID" Type="Int32" Nullable="false" />
+          <Property Name="GenreID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Book" Relationship="Self.FK_BookGenre_Book" FromRole="BookGenre" ToRole="Book" />
+          <NavigationProperty Name="Genre" Relationship="Self.FK_BookGenre_Genre" FromRole="BookGenre" ToRole="Genre" />
         </EntityType>
         <EntityType Name="Genre">
           <Key>
@@ -426,7 +436,7 @@
           <Property Name="GenreID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Book" Relationship="Self.BookGenre" FromRole="Genre" ToRole="Book" />
+          <NavigationProperty Name="BookGenre" Relationship="Self.FK_BookGenre_Genre" FromRole="Genre" ToRole="BookGenre" />
         </EntityType>
         <EntityType Name="ListType">
           <Key>
@@ -555,6 +565,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_BookGenre_Book">
+          <End Role="Book" Type="Self.Book" Multiplicity="1" />
+          <End Role="BookGenre" Type="Self.BookGenre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book">
+              <PropertyRef Name="BookID" />
+            </Principal>
+            <Dependent Role="BookGenre">
+              <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ReadingList_Book">
           <End Role="Book" Type="Self.Book" Multiplicity="1" />
           <End Role="ReadingList" Type="Self.ReadingList" Multiplicity="*" />
@@ -600,6 +622,18 @@
             </Principal>
             <Dependent Role="UnFreezeApplication">
               <PropertyRef Name="BookID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookGenre_Genre">
+          <End Role="Genre" Type="Self.Genre" Multiplicity="1" />
+          <End Role="BookGenre" Type="Self.BookGenre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genre">
+              <PropertyRef Name="GenreID" />
+            </Principal>
+            <Dependent Role="BookGenre">
+              <PropertyRef Name="GenreID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -711,12 +745,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="BookGenre">
-          <End Role="Book" Type="Self.Book" Multiplicity="*" />
-          <End Role="Genre" Type="Self.Genre" Multiplicity="*" />
-        </Association>
         <EntityContainer Name="up11_1_booksEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Book" EntityType="Self.Book" />
+          <EntitySet Name="BookGenre" EntityType="Self.BookGenre" />
           <EntitySet Name="Genre" EntityType="Self.Genre" />
           <EntitySet Name="ListType" EntityType="Self.ListType" />
           <EntitySet Name="ReadingList" EntityType="Self.ReadingList" />
@@ -731,6 +762,10 @@
           <AssociationSet Name="FK_Book_User" Association="Self.FK_Book_User">
             <End Role="User" EntitySet="User" />
             <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookGenre_Book" Association="Self.FK_BookGenre_Book">
+            <End Role="Book" EntitySet="Book" />
+            <End Role="BookGenre" EntitySet="BookGenre" />
           </AssociationSet>
           <AssociationSet Name="FK_ReadingList_Book" Association="Self.FK_ReadingList_Book">
             <End Role="Book" EntitySet="Book" />
@@ -747,6 +782,10 @@
           <AssociationSet Name="FK_UnFreezeApplication_Book" Association="Self.FK_UnFreezeApplication_Book">
             <End Role="Book" EntitySet="Book" />
             <End Role="UnFreezeApplication" EntitySet="UnFreezeApplication" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookGenre_Genre" Association="Self.FK_BookGenre_Genre">
+            <End Role="Genre" EntitySet="Genre" />
+            <End Role="BookGenre" EntitySet="BookGenre" />
           </AssociationSet>
           <AssociationSet Name="FK_ReadingList_ListType" Association="Self.FK_ReadingList_ListType">
             <End Role="ListType" EntitySet="ListType" />
@@ -784,10 +823,6 @@
             <End Role="User" EntitySet="User" />
             <End Role="UnFreezeApplication" EntitySet="UnFreezeApplication" />
           </AssociationSet>
-          <AssociationSet Name="BookGenre" Association="Self.BookGenre">
-            <End Role="Book" EntitySet="Book" />
-            <End Role="Genre" EntitySet="Genre" />
-          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -805,6 +840,15 @@
                 <ScalarProperty Name="Body" ColumnName="Body" />
                 <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
                 <ScalarProperty Name="IsFrozen" ColumnName="IsFrozen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookGenre">
+            <EntityTypeMapping TypeName="up11_1_booksModel.BookGenre">
+              <MappingFragment StoreEntitySet="BookGenre">
+                <ScalarProperty Name="BookGenreID" ColumnName="BookGenreID" />
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
+                <ScalarProperty Name="GenreID" ColumnName="GenreID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -919,14 +963,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="BookGenre" TypeName="up11_1_booksModel.BookGenre" StoreEntitySet="BookGenre">
-            <EndProperty Name="Book">
-              <ScalarProperty Name="BookID" ColumnName="BookID" />
-            </EndProperty>
-            <EndProperty Name="Genre">
-              <ScalarProperty Name="GenreID" ColumnName="GenreID" />
-            </EndProperty>
-          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

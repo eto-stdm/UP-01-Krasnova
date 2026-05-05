@@ -35,7 +35,22 @@ namespace UP_01_Krasnova.Pages
             List<Review> userReviews = Core.Context.Review.ToList().FindAll(x => x.UserID == State.CurrentUserID);
             ReviewsLB.ItemsSource = userReviews;
 
+            if (cur.Role.Name != "Author")
+            {
+                BecomeAuthorSP.Visibility = Visibility.Visible;
+            }
+
+            if (cur.IsFrozen == true)
+            {
+                UnfreezeAccSP.Visibility = Visibility.Visible;
+            }
             //UnfreezeAccTB.Text +=
+        }
+
+        private void ExitBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //State.CurrentUserID = 0;
+            //MainFrame.NavigationService.Navigate(new AuthLogPage());
         }
     }
 }

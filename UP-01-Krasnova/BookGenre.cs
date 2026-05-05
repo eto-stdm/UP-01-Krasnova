@@ -12,19 +12,13 @@ namespace UP_01_Krasnova
     using System;
     using System.Collections.Generic;
     
-    public partial class Genre
+    public partial class BookGenre
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Genre()
-        {
-            this.BookGenre = new HashSet<BookGenre>();
-        }
-    
+        public int BookGenreID { get; set; }
+        public int BookID { get; set; }
         public int GenreID { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BookGenre> BookGenre { get; set; }
+        public virtual Book Book { get; set; }
+        public virtual Genre Genre { get; set; }
     }
 }

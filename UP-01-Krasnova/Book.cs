@@ -17,11 +17,11 @@ namespace UP_01_Krasnova
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Book()
         {
+            this.BookGenre = new HashSet<BookGenre>();
             this.ReadingList = new HashSet<ReadingList>();
             this.Report = new HashSet<Report>();
             this.Review = new HashSet<Review>();
             this.UnFreezeApplication = new HashSet<UnFreezeApplication>();
-            this.Genre = new HashSet<Genre>();
         }
     
         public int BookID { get; set; }
@@ -34,6 +34,8 @@ namespace UP_01_Krasnova
     
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BookGenre> BookGenre { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ReadingList> ReadingList { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Report> Report { get; set; }
@@ -41,7 +43,5 @@ namespace UP_01_Krasnova
         public virtual ICollection<Review> Review { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UnFreezeApplication> UnFreezeApplication { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Genre> Genre { get; set; }
     }
 }
