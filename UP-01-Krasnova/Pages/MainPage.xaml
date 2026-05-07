@@ -18,9 +18,7 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Column="0" Grid.Row="0" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" ToolTip="Выход из аккаунта">
-            <Hyperlink x:Name="ExitHL" Foreground="Black" FontStyle="Normal" Click="ExitHL_Click">ШутИКроль</Hyperlink>
-        </TextBlock>
+        <TextBlock Text="ШутИКроль" Grid.Column="0" Grid.Row="0" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <TextBlock Grid.Column="1" Grid.Row="0" Text="Читай, Пиши и не спиши" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
         <StackPanel Grid.Column="0" Grid.Row="1" Background="LightSlateGray">
@@ -41,6 +39,9 @@
             </Button>
             <Button x:Name="WarningBtn" Height="60" Visibility="Collapsed" Click="SideBarItem_Click">
                 <Image Source="/Images/warning.png" Margin="5"/>
+            </Button>
+            <Button x:Name="ExitBtn" Height="60" Visibility="Visible" Click="SideBarItem_Click">
+                <Image Source="/Images/exit.png" Margin="5"/>
             </Button>
         </StackPanel>
 

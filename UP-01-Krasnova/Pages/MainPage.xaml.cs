@@ -44,7 +44,6 @@ namespace UP_01_Krasnova.Pages
             }
         }
 
-
         private void FrozenException()
         {
             MessageBox.Show("Вам запрещено посещать разделы, кроме профиля, так как ваш аккаунт заморожен!");
@@ -78,14 +77,12 @@ namespace UP_01_Krasnova.Pages
                 case "WarningBtn":
                     MessageBox.Show("Ваш аккаунт заморожен! Оставьте в профиле заявку для его разморозки.");
                     break;
+                case "ExitBtn":
+                    State.CurrentUserID = 0;
+                    NavigationService.Navigate(new AuthLogPage());
+                    break;
                 default: break;
              }
-        }
-
-        private void ExitHL_Click(object sender, RoutedEventArgs e)
-        {
-            State.CurrentUserID = 0;
-            NavigationService.Navigate(new AuthLogPage());
         }
     }
 }
