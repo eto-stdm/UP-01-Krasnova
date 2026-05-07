@@ -35,7 +35,7 @@ namespace UP_01_Krasnova.Pages
             List<Review> userReviews = Core.Context.Review.ToList().FindAll(x => x.UserID == State.CurrentUserID);
             ReviewsLB.ItemsSource = userReviews;
 
-            if (cur.Role.Name != "Author")
+            if (cur.Role.Name != "Author" && cur.IsFrozen == false)
             {
                 BecomeAuthorSP.Visibility = Visibility.Visible;
             }
@@ -44,13 +44,8 @@ namespace UP_01_Krasnova.Pages
             {
                 UnfreezeAccSP.Visibility = Visibility.Visible;
             }
-            //UnfreezeAccTB.Text +=
-        }
 
-        private void ExitBtn_Click(object sender, RoutedEventArgs e)
-        {
-            //State.CurrentUserID = 0;
-            //MainFrame.NavigationService.Navigate(new AuthLogPage());
+            //UnfreezeAccTB.Text +=
         }
     }
 }

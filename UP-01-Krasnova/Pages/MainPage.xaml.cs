@@ -37,34 +37,55 @@ namespace UP_01_Krasnova.Pages
                     break;
                 default: break;
             }
-            if (user.IsFrozen) { WarningBtn.Visibility = Visibility.Visible; }
+            if (user.IsFrozen)
+            { 
+                WarningBtn.Visibility = Visibility.Visible;
+                MainPageFrame.Source = new Uri("/Pages/ProfilePage.xaml", UriKind.Relative);
+            }
+        }
+
+
+        private void FrozenException()
+        {
+            MessageBox.Show("Вам запрещено посещать разделы, кроме профиля, так как ваш аккаунт заморожен!");
         }
 
         private void SideBarItem_Click(object sender, RoutedEventArgs e)
         {
+            User user = Core.Context.User.FirstOrDefault(x => x.UserID == State.CurrentUserID);
             var item = (sender as Button).Name;
             switch (item)
             {
                 case "BookCatalogBtn":
-                    MainPageFrame.NavigationService.Navigate(new BookCatalogPage());
+                    if (user.IsFrozen) { FrozenException(); return; }
+                    else { MainPageFrame.NavigationService.Navigate(new BookCatalogPage()); }
                     break;
                 case "BookListBtn":
-                    MainPageFrame.NavigationService.Navigate(new BookListPage());
+                    if (user.IsFrozen) { FrozenException(); return; }
+                    else { MainPageFrame.NavigationService.Navigate(new BookListPage()); }
                     break;
                 case "ProfileBtn":
                     MainPageFrame.NavigationService.Navigate(new ProfilePage());
                     break;
                 case "AdminBtn":
-                    MainPageFrame.NavigationService.Navigate(new AdminPage());
+                    if (user.IsFrozen) { FrozenException(); return; }
+                    else { MainPageFrame.NavigationService.Navigate(new AdminPage()); }
                     break;
                 case "AuthorBtn":
-                    MainPageFrame.NavigationService.Navigate(new AuthorPage());
+                    if (user.IsFrozen) { FrozenException(); return; }
+                    else { MainPageFrame.NavigationService.Navigate(new AuthorPage()); }
                     break;
                 case "WarningBtn":
-                    MessageBox.Show("Ваш аккаунт заморожен!");
+                    MessageBox.Show("Ваш аккаунт заморожен! Оставьте в профиле заявку для его разморозки.");
                     break;
                 default: break;
-            }
+             }
+        }
+
+        private void ExitHL_Click(object sender, RoutedEventArgs e)
+        {
+            State.CurrentUserID = 0;
+            NavigationService.Navigate(new AuthLogPage());
         }
     }
 }
