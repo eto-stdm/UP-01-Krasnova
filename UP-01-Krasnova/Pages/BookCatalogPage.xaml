@@ -57,7 +57,7 @@
                                 <TextBlock Text="{Binding Name, StringFormat=Название: {0}}" Margin="10, 0, 10, 10" HorizontalAlignment="Center" TextWrapping="Wrap"/>
                                 <TextBlock Text="{Binding TotalRating, StringFormat=Рейтинг: {0}/10}" Margin="10, 0, 10, 10" HorizontalAlignment="Center"/>
                                 <TextBlock Text="{Binding User.Username, StringFormat=Автор: {0}}" Margin="10, 0, 10, 10" HorizontalAlignment="Center"/>
-                                <Button x:Name="AddToListBtn" Content="Добавить в список"/>
+                                <Button x:Name="AddToListBtn" Content="Добавить в список" Tag="{Binding}" Click="AddToListBtn_Click"/>
                             </StackPanel>
                         </Grid>
                     </DataTemplate>

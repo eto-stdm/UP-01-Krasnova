@@ -122,6 +122,30 @@
     <Compile Include="User.cs">
       <DependentUpon>up11_1_books.tt</DependentUpon>
     </Compile>
+    <Compile Include="Windows\AddToListWindow.xaml.cs">
+      <DependentUpon>AddToListWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\BecomeAuthorWindow.xaml.cs">
+      <DependentUpon>BecomeAuthorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\EditBookWindow.xaml.cs">
+      <DependentUpon>EditBookWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MakeNewBookWindow.xaml.cs">
+      <DependentUpon>MakeNewBookWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MakeReportWindow.xaml.cs">
+      <DependentUpon>MakeReportWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MakeReviewWindow.xaml.cs">
+      <DependentUpon>MakeReviewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\UnfreezeWindow.xaml.cs">
+      <DependentUpon>UnfreezeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\WholeBookTextWindow.xaml.cs">
+      <DependentUpon>WholeBookTextWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -164,11 +188,39 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\NewBookPage.xaml">
+    <Page Include="Pages\ProfilePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\ProfilePage.xaml">
+    <Page Include="Windows\AddToListWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\BecomeAuthorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\EditBookWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\MakeNewBookWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\MakeReportWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\MakeReviewWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\UnfreezeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\WholeBookTextWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -194,9 +246,6 @@
     </Compile>
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\NewBookPage.xaml.cs">
-      <DependentUpon>NewBookPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>

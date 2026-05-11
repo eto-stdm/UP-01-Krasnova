@@ -1,0 +1,23 @@
+﻿<Window x:Class="UP_01_Krasnova.Windows.AddToListWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UP_01_Krasnova.Windows"
+        mc:Ignorable="d"
+        Title="Добавить в список" Height="230" Width="200">
+    <Grid>
+        <StackPanel>
+            <TextBlock x:Name="BookNameTB" Text="Книга: " Margin="10,0,10,0"/>
+            <StackPanel>
+                <TextBlock Text="Из списка:" Margin="10,10,10,0"/>
+                <ComboBox x:Name="FromListCB" Margin="10" IsEnabled="False"/>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="В список:" Margin="10,10,10,0"/>
+                <ComboBox x:Name="ToListCB" Margin="10"/>
+            </StackPanel>
+            <Button x:Name="AddToListBtn" Content="Добавить" Height="20" Margin="10" Click="AddToListBtn_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

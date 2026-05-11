@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace UP_01_Krasnova.Pages
+namespace UP_01_Krasnova.Windows
 {
     /// <summary>
-    /// Логика взаимодействия для NewBookPage.xaml
+    /// Логика взаимодействия для UnfreezeWindow.xaml
     /// </summary>
-    public partial class NewBookPage : Page
+    public partial class UnfreezeWindow : Window
     {
-        public NewBookPage()
+        public UnfreezeWindow()
         {
             InitializeComponent();
         }

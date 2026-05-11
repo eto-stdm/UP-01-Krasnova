@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UP_01_Krasnova.Windows;
 
 namespace UP_01_Krasnova.Pages
 {
@@ -136,6 +137,20 @@ namespace UP_01_Krasnova.Pages
             BookPage page = new BookPage(selectBook);
 
             NavigationService.Navigate(page);
+        }
+
+        private void AddToListBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            if (button?.Tag is Book book)
+            {
+                var window = new AddToListWindow(book);
+                if (window.ShowDialog() == true)
+                {
+                    MessageBox.Show($"Книга '{book.Name}' добавлена в список {window.ToListCB.Text}");
+                }
+            }
+            //window.ShowDialog();
         }
     }
 }
