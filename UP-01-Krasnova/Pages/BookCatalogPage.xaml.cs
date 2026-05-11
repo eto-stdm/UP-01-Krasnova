@@ -150,7 +150,6 @@ namespace UP_01_Krasnova.Pages
                     MessageBox.Show($"Книга '{book.Name}' добавлена в список {window.ToListCB.Text}");
                 }
             }
-            //window.ShowDialog();
         }
     }
 }

@@ -9,6 +9,74 @@
       Title="BookListPage">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="45"></ColumnDefinition>
+            <ColumnDefinition Width="300"></ColumnDefinition>
+            <ColumnDefinition Width="300"></ColumnDefinition>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock Text="Списки книг" FontSize="16" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+            <TextBox x:Name="SearchTB" Width="200" Margin="10"/>
+            <TextBlock Text="Поиск по:" Margin="0,10,10,10"/>
+            <Button x:Name="SearchByNameBtn" Content="Названию" Width="60" Margin="0,10,10,10" Click="Search_Click"/>
+            <Button x:Name="SearchByAuthorBtn" Content="Автору" Width="60" Margin="0,10,10,10" Click="Search_Click"/>
+
+            <Menu Width="40" Margin="0,10,10,10">
+                <MenuItem Header=" 🍸" VerticalContentAlignment="Center" Width="40" Height="20" Background="#dddddd" BorderBrush="Black" BorderThickness="1">
+                    <MenuItem x:Name="Default" Header="(нет)" Click="Sort_Click"/>
+                    <Separator/>
+                    <MenuItem x:Name="NameSortUp" Header="Название (по возрастанию)" Click="Sort_Click"/>
+                    <MenuItem x:Name="NameSortDown" Header="Название (по убыванию)" Click="Sort_Click"/>
+                    <Separator/>
+                    <MenuItem x:Name="RatingSortUp" Header="Оценка (по возрастанию)" Click="Sort_Click"/>
+                    <MenuItem x:Name="RatingSortDown" Header="Оценка (по убыванию)" Click="Sort_Click"/>
+                    <Separator/>
+                </MenuItem>
+            </Menu>
+
+            <ComboBox x:Name="GenreFilterCB" Margin="0,10,10,10" SelectionChanged="Filter_SelectionChanged"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+            <Button x:Name="ListReadingBtn" Content="Читаю" Margin="10,0,10,10" Click="ChangeList_Click"/>
+            <Button x:Name="ListInPlansBtn" Content="В планах" Margin="10,0,10,10" Click="ChangeList_Click"/>
+            <Button x:Name="ListReadBtn" Content="Прочитано" Margin="10,0,10,10" Click="ChangeList_Click"/>
+            <Button x:Name="ListDroppedBtn" Content="Заброшено" Margin="10,0,10,10" Click="ChangeList_Click"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalAlignment="Center">
+            <ListBox x:Name="BooksLB" ScrollViewer.HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Center" Margin="10,0,10,10" Height="230" Width="580">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Height="220" Width="128" Margin="0">
+                            <StackPanel Margin="0">
+                                <Image Source="/Images/Image.PNG" Width="100" Height="100" Margin="10" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding Name, StringFormat=Название: {0}}" Margin="10, 0, 10, 10" HorizontalAlignment="Center" TextWrapping="Wrap"/>
+                                <TextBlock Text="{Binding TotalRating, StringFormat=Рейтинг: {0}/10}" Margin="10, 0, 10, 10" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding User.Username, StringFormat=Автор: {0}}" Margin="10, 0, 10, 10" HorizontalAlignment="Center"/>
+                                <Button x:Name="ReplaceBtn" Content="Переместить" Tag="{Binding}" Click="AddToListBtn_Click"/>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+        </StackPanel>
     </Grid>
 </Page>
