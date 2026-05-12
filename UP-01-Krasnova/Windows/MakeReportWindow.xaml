@@ -5,8 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UP_01_Krasnova.Windows"
         mc:Ignorable="d"
-        Title="MakeReportWindow" Height="450" Width="800">
+        Title="MakeReportWindow" Height="150" Width="200">
     <Grid>
-        
+        <StackPanel>
+            <TextBlock x:Name="NameTB" Text="Оставить жалобу на " HorizontalAlignment="Center" Margin="10" TextWrapping="Wrap"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Текст:" Margin="10,0,10,10"/>
+                <TextBox x:Name="TextTB" Width="100" Margin="0,0,10,10"/>
+            </StackPanel>
+            <Button x:Name="MakeReportBtn" Content="Опубликовать жалобу" Margin="10,0,10,10" Click="MakeReportBtn_Click"/>
+        </StackPanel>
     </Grid>
 </Window>

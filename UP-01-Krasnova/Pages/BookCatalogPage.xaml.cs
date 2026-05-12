@@ -26,7 +26,8 @@ namespace UP_01_Krasnova.Pages
         {
             InitializeComponent();
 
-            BooksLB.ItemsSource = Core.Context.Book.ToList();
+            List<Book> unfrozenBooks = Core.Context.Book.Where(x => x.IsFrozen == false).ToList();
+            BooksLB.ItemsSource = unfrozenBooks;
 
             List<string> genreName = new List<string>();
             foreach (Genre g in Core.Context.Genre.ToList())

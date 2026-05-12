@@ -29,10 +29,10 @@ namespace UP_01_Krasnova.Pages
 
             switch (user.Role.Name)
             {
-                case "Администратор":
+                case "Admin":
                     AdminBtn.Visibility = Visibility.Visible;
                     break;
-                case "Автор":
+                case "Author":
                     AuthorBtn.Visibility = Visibility.Visible;
                     break;
                 default: break;

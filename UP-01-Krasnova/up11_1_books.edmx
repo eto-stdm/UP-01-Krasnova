@@ -54,6 +54,7 @@
             <PropertyRef Name="ReportID" />
           </Key>
           <Property Name="ReportID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ComplainantID" Type="int" Nullable="false" />
           <Property Name="UserID" Type="int" />
           <Property Name="ReviewID" Type="int" />
           <Property Name="BookID" Type="int" />
@@ -222,6 +223,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Report_User1">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Report" Type="Self.Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="ComplainantID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Review_Book">
           <End Role="Book" Type="Self.Book" Multiplicity="1" />
           <End Role="Review" Type="Self.Review" Multiplicity="*" />
@@ -364,6 +377,10 @@
             <End Role="User" EntitySet="User" />
             <End Role="Report" EntitySet="Report" />
           </AssociationSet>
+          <AssociationSet Name="FK_Report_User1" Association="Self.FK_Report_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Report" EntitySet="Report" />
+          </AssociationSet>
           <AssociationSet Name="FK_Review_Book" Association="Self.FK_Review_Book">
             <End Role="Book" EntitySet="Book" />
             <End Role="Review" EntitySet="Review" />
@@ -464,12 +481,14 @@
             <PropertyRef Name="ReportID" />
           </Key>
           <Property Name="ReportID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ComplainantID" Type="Int32" Nullable="false" />
           <Property Name="UserID" Type="Int32" />
           <Property Name="ReviewID" Type="Int32" />
           <Property Name="BookID" Type="Int32" />
           <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Book" Relationship="Self.FK_Report_Book" FromRole="Report" ToRole="Book" />
           <NavigationProperty Name="User" Relationship="Self.FK_Report_User" FromRole="Report" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="Self.FK_Report_User1" FromRole="Report" ToRole="User" />
         </EntityType>
         <EntityType Name="Review">
           <Key>
@@ -550,6 +569,7 @@
           <NavigationProperty Name="Book" Relationship="Self.FK_Book_User" FromRole="User" ToRole="Book" />
           <NavigationProperty Name="ReadingList" Relationship="Self.FK_ReadingList_User" FromRole="User" ToRole="ReadingList" />
           <NavigationProperty Name="Report" Relationship="Self.FK_Report_User" FromRole="User" ToRole="Report" />
+          <NavigationProperty Name="Report1" Relationship="Self.FK_Report_User1" FromRole="User" ToRole="Report" />
           <NavigationProperty Name="Review" Relationship="Self.FK_Review_User" FromRole="User" ToRole="Review" />
           <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
           <NavigationProperty Name="RoleApplication" Relationship="Self.FK_RoleApplication_User" FromRole="User" ToRole="RoleApplication" />
@@ -672,6 +692,18 @@
             </Principal>
             <Dependent Role="Report">
               <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Report_User1">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Report" Type="Self.Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="ComplainantID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -801,6 +833,10 @@
             <End Role="User" EntitySet="User" />
             <End Role="Report" EntitySet="Report" />
           </AssociationSet>
+          <AssociationSet Name="FK_Report_User1" Association="Self.FK_Report_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Report" EntitySet="Report" />
+          </AssociationSet>
           <AssociationSet Name="FK_Review_User" Association="Self.FK_Review_User">
             <End Role="User" EntitySet="User" />
             <End Role="Review" EntitySet="Review" />
@@ -885,6 +921,7 @@
             <EntityTypeMapping TypeName="up11_1_booksModel.Report">
               <MappingFragment StoreEntitySet="Report">
                 <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+                <ScalarProperty Name="ComplainantID" ColumnName="ComplainantID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="ReviewID" ColumnName="ReviewID" />
                 <ScalarProperty Name="BookID" ColumnName="BookID" />

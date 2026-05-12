@@ -5,8 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UP_01_Krasnova.Windows"
         mc:Ignorable="d"
-        Title="WholeBookTextWindow" Height="450" Width="800">
+        Title="WholeBookTextWindow" Height="200" Width="200">
     <Grid>
-        
+        <StackPanel>
+            <TextBlock x:Name="BookNameTB" Text="Текст книги " HorizontalAlignment="Center" Margin="10"/>
+            <ScrollViewer Height="120" Margin="10,0,10,10">
+                <TextBlock x:Name="WholeTextTB" HorizontalAlignment="Left" TextWrapping="Wrap"/>
+            </ScrollViewer>
+        </StackPanel>
     </Grid>
 </Window>

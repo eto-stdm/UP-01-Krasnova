@@ -39,7 +39,7 @@ namespace UP_01_Krasnova.Pages
             List<Review> userReviews = Core.Context.Review.ToList().FindAll(x => x.UserID == State.CurrentUserID);
             ReviewsLB.ItemsSource = userReviews;
 
-            if (cur.Role.Name != "Author" && cur.IsFrozen == false)
+            if (cur.Role.Name == "Reader" && cur.IsFrozen == false)
             {
                 BecomeAuthorSP.Visibility = Visibility.Visible;
                 if (Core.Context.RoleApplication.FirstOrDefault(x => x.UserID == State.CurrentUserID && x.Status.StatusID == 1) != null)

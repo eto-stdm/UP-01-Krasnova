@@ -19,9 +19,15 @@ namespace UP_01_Krasnova.Windows
     /// </summary>
     public partial class WholeBookTextWindow : Window
     {
-        public WholeBookTextWindow()
+        public Book book { get; set; }
+        public WholeBookTextWindow(Book book)
         {
             InitializeComponent();
+
+            this.book = book;
+
+            BookNameTB.Text += "'" + book.Name + "'";
+            WholeTextTB.Text = book.Body;
         }
     }
 }

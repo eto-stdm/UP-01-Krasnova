@@ -20,6 +20,7 @@ namespace UP_01_Krasnova
             this.Book = new HashSet<Book>();
             this.ReadingList = new HashSet<ReadingList>();
             this.Report = new HashSet<Report>();
+            this.Report1 = new HashSet<Report>();
             this.Review = new HashSet<Review>();
             this.RoleApplication = new HashSet<RoleApplication>();
             this.UnFreezeApplication = new HashSet<UnFreezeApplication>();
@@ -39,6 +40,8 @@ namespace UP_01_Krasnova
         public virtual ICollection<ReadingList> ReadingList { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Report> Report { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Report> Report1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Review> Review { get; set; }
         public virtual Role Role { get; set; }

@@ -15,6 +15,7 @@ namespace UP_01_Krasnova
     public partial class Report
     {
         public int ReportID { get; set; }
+        public int ComplainantID { get; set; }
         public Nullable<int> UserID { get; set; }
         public Nullable<int> ReviewID { get; set; }
         public Nullable<int> BookID { get; set; }
@@ -22,5 +23,6 @@ namespace UP_01_Krasnova
     
         public virtual Book Book { get; set; }
         public virtual User User { get; set; }
+        public virtual User User1 { get; set; }
     }
 }

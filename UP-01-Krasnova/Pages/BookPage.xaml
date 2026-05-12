@@ -37,17 +37,18 @@
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="3" VerticalAlignment="Center">
-            <Button x:Name="ReadBtn" Content=" Читать" Width="100" Margin="10"/>
+            <Button x:Name="ReadBtn" Content="Читать" Width="100" Margin="10" Click="ReadBtn_Click"/>
+            <Button x:Name="ReviewBtn" Content="Оставить отзыв" Width="100" Margin="10,0,10,10" Click="ReviewBtn_Click"/>
             <!--Margin="10,0,10,10"-->
             <Menu x:Name="ReportMenu" Margin="10,0,10,10">
-                <MenuItem Header="Пожаловаться" Width="100" Height="20" Background="#dddddd" BorderBrush="Black" BorderThickness="1">
-                    <MenuItem x:Name="ReportBookMI" Header="На книгу"/>
-                    <MenuItem x:Name="ReportAuthorMI" Header="На автора"/>
+                <MenuItem Header=" Пожаловаться" Width="100" Height="20" Background="#dddddd" BorderBrush="Black" BorderThickness="1">
+                    <MenuItem x:Name="ReportBookMI" Header="На книгу" Click="Report_Click"/>
+                    <MenuItem x:Name="ReportAuthorMI" Header="На автора" Click="Report_Click"/>
                 </MenuItem>
             </Menu>
             <Menu x:Name="FrozeMenu" Margin="10,0,10,10" Visibility="Collapsed">
-                <MenuItem Header="Заморозить" Width="100" Height="20" Background="#dddddd" BorderBrush="Black" BorderThickness="1">
-                    <MenuItem x:Name="FrozeBookMI" Header="Книгу"/>
+                <MenuItem Header="   Заморозить" Width="100" Height="20" Background="#dddddd" BorderBrush="Black" BorderThickness="1">
+                    <MenuItem x:Name="FrozeBookMI" Header="Книгу" Click="Froze_Click"/>
                 </MenuItem>
             </Menu>
         </StackPanel>
@@ -57,14 +58,15 @@
                 <ListBox x:Name="ReviewsLB" ScrollViewer.HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Center" Margin="10" Height="130" Width="460">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid Height="220" Width="128" Margin="0">
-                            <StackPanel Margin="0">
-                                <Image Source="/Images/Image.PNG" Width="100" Height="100" Margin="10" HorizontalAlignment="Center"/>
-                                <TextBlock Text="{Binding Name, StringFormat=Название: {0}}" Margin="10, 0, 10, 10" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                <TextBlock Text="{Binding TotalRating, StringFormat=Рейтинг: {0}/10}" Margin="10, 0, 10, 10" HorizontalAlignment="Center"/>
-                                <TextBlock Text="{Binding User.Username, StringFormat=Автор: {0}}" Margin="10, 0, 10, 10" HorizontalAlignment="Center"/>
-                                <Button x:Name="AddToListBtn" Content="Добавить в список"/>
-                            </StackPanel>
+                        <Grid Height="70" Width="430" Margin="0">
+                            <WrapPanel Margin="0" Orientation="Horizontal" VerticalAlignment="Center">
+                                <TextBlock Text="{Binding User.Username, StringFormat=Пользователь: {0}}" Margin="10, 10, 10, 10" HorizontalAlignment="Center" TextWrapping="Wrap"/>
+                                <TextBlock Text="{Binding Rating, StringFormat=Оценка: {0}/10}" Margin="0, 10, 10, 10" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding Text, StringFormat=Комментарий: {0}}" Margin="0, 10, 10, 10" HorizontalAlignment="Center" TextWrapping="Wrap"/>
+                                <Menu Margin="0,10,10,10" Visibility="Visible">
+                                    <MenuItem x:Name="ReportReviewMI" Header="Пожаловаться" Background="#dddddd" BorderBrush="Black" BorderThickness="1" Tag="{Binding}" Width="100" Height="20" Click="Report_Click"/>
+                                </Menu>
+                            </WrapPanel>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

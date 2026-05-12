@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using UP_01_Krasnova.Classes;
 
 namespace UP_01_Krasnova.Windows
 {
@@ -19,9 +20,37 @@ namespace UP_01_Krasnova.Windows
     /// </summary>
     public partial class MakeReviewWindow : Window
     {
-        public MakeReviewWindow()
+        public Book book {  get; set; }
+        public MakeReviewWindow(Book book)
         {
             InitializeComponent();
+
+            this.book = book;
+            BookNameTB.Text += book.Name;
+
+            List<string> ratingNums = new List<string>();
+            for (int i = 1; i < 11; i++) { ratingNums.Add(i.ToString()); }
+            RatingCB.ItemsSource = ratingNums;
+        }
+
+        private void MakeReviewBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(TextTB.Text))
+            {
+                Review newReview = new Review
+                {
+                    BookID = book.BookID,
+                    UserID = State.CurrentUserID,
+                    Rating = Convert.ToInt32(RatingCB.Text),
+                    Text = TextTB.Text,
+                    Date = DateTime.Now,
+                };
+                Core.Context.Review.Add(newReview);
+                Core.Context.SaveChanges();
+
+                this.DialogResult = true;
+            }
+            else { MessageBox.Show("Заполните текст отзыва!"); }
         }
     }
 }

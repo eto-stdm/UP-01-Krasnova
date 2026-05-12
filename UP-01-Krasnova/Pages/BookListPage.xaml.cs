@@ -31,8 +31,11 @@ namespace UP_01_Krasnova.Pages
             List<ReadingList> r = Core.Context.ReadingList.Where(x => x.UserID == State.CurrentUserID && x.ListType.Name == "Читаю").ToList();
             foreach (var list in r)
             {
-                curbooks.Add(Core.Context.Book.First(x => x.BookID == list.BookID));
-                lastSelection.Add(Core.Context.Book.First(x => x.BookID == list.BookID));
+                if (Core.Context.Book.FirstOrDefault(x => x.BookID == list.BookID && x.IsFrozen == false) != null)
+                {
+                    curbooks.Add(Core.Context.Book.FirstOrDefault(x => x.BookID == list.BookID && x.IsFrozen == false));
+                    lastSelection.Add(Core.Context.Book.FirstOrDefault(x => x.BookID == list.BookID && x.IsFrozen == false));
+                }
             }
             BooksLB.ItemsSource = curbooks;
 
@@ -53,12 +56,12 @@ namespace UP_01_Krasnova.Pages
             {
                 if (type == "Name")
                 {
-                    curbooks = lastSelection.Where(x => x.Name.ToLower() == search.ToLower()).ToList();
+                    curbooks = lastSelection.Where(x => x.Name.ToLower() == search.ToLower() && x.IsFrozen == false).ToList();
                 }
 
                 if (type == "Author")
                 {
-                    curbooks = lastSelection.Where(x => x.User.Username.ToLower() == search.ToLower()).ToList();
+                    curbooks = lastSelection.Where(x => x.User.Username.ToLower() == search.ToLower() && x.IsFrozen == false).ToList();
                 }
             }
             else
@@ -101,7 +104,7 @@ namespace UP_01_Krasnova.Pages
                 {
                     foreach (BookGenre bg in bookGenres)
                     {
-                        if (b.BookID == bg.BookID)
+                        if (b.BookID == bg.BookID && b.IsFrozen == false)
                         {
                             selectedBooks.Add(b);
                         }
@@ -187,8 +190,11 @@ namespace UP_01_Krasnova.Pages
 
             foreach (var list in newList)
             {
-                curbooks.Add(Core.Context.Book.First(x => x.BookID == list.BookID));
-                //lastSelection.Add(Core.Context.Book.First(x => x.BookID == list.BookID));
+                if (Core.Context.Book.FirstOrDefault(x => x.BookID == list.BookID && x.IsFrozen == false) != null)
+                {
+                    curbooks.Add(Core.Context.Book.FirstOrDefault(x => x.BookID == list.BookID && x.IsFrozen == false));
+                    //lastSelection.Add(Core.Context.Book.First(x => x.BookID == list.BookID));
+                }
             }
             BooksLB.ItemsSource = curbooks;
         }
