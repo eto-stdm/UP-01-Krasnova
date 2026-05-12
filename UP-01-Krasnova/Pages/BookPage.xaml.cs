@@ -36,6 +36,7 @@ namespace UP_01_Krasnova.Pages
             if (Core.Context.User.First(x => x.UserID == State.CurrentUserID).Role.Name == "Admin")
             {
                 FrozeMenu.Visibility = Visibility.Visible;
+                //ReviewsLB.Items.FrozeReviewMenu.Visibility = Visibility.Visible;
             }
             NameTB.Text += book.Name;
             DescriptionTB.Text += book.Description;
@@ -57,7 +58,6 @@ namespace UP_01_Krasnova.Pages
             if (Core.Context.Review.FirstOrDefault(x => x.BookID == book.BookID && x.UserID == State.CurrentUserID) == null)
             {
                 var window = new MakeReviewWindow(book);
-                //window.ShowDialog();
                 if (window.ShowDialog() == true)
                 {
                     MessageBox.Show($"Вы оставили отзыв на книгу '{book.Name}'");
@@ -116,7 +116,46 @@ namespace UP_01_Krasnova.Pages
 
         private void Froze_Click(object sender, RoutedEventArgs e)
         {
+            var butn = (MenuItem)sender;
+            switch (butn.Name)
+            {
+                case "FrozeBookMI":
+                    if (Core.Context.Book.FirstOrDefault(x => x.BookID == book.BookID && x.IsFrozen == false) != null)
+                    {
+                        MessageBoxResult resultBook = MessageBox.Show("Вы уверены?", "Предупреждение", MessageBoxButton.YesNo);
+                        if (resultBook == MessageBoxResult.Yes)
+                        {
+                            book.IsFrozen = true;
+                            Core.Context.SaveChanges();
+                            MessageBox.Show("Книга успешно заморожена!");
+                        }
+                    }
+                    else { MessageBox.Show("Книга уже заморожена!"); }
+                    break;
+                case "FrozeReviewMI":
+                    MessageBoxResult resultReview = MessageBox.Show(
+                        "Перед заморозкой отзыва убедитесь, что вы выделили его (выбранный отзыв имеет серый фон) и нажмите 'да'.",
+                        "Выделен ли отзыв?", 
+                        MessageBoxButton.YesNo);
 
+                    if (resultReview == MessageBoxResult.Yes)
+                    {
+                        if (ReviewsLB.SelectedItem != null)
+                        {
+                            var selReview = ReviewsLB.SelectedItem as Review;
+                            if (Core.Context.Review.FirstOrDefault(x => x.ReviewID == selReview.ReviewID && x.IsFrozen == false) != null)
+                            {
+                                selReview.IsFrozen = true;
+                                Core.Context.SaveChanges();
+                                MessageBox.Show("Отзыв успешно заморожен!");
+                            }
+                            else { MessageBox.Show("Отзыв уже заморожен!"); }
+                        }
+                        else { MessageBox.Show("Отзыв не выбран!"); }
+                    }
+                    break;
+                default: break;
+            }
         }
     }
 }

@@ -49,6 +49,7 @@
             <Menu x:Name="FrozeMenu" Margin="10,0,10,10" Visibility="Collapsed">
                 <MenuItem Header="   Заморозить" Width="100" Height="20" Background="#dddddd" BorderBrush="Black" BorderThickness="1">
                     <MenuItem x:Name="FrozeBookMI" Header="Книгу" Click="Froze_Click"/>
+                    <MenuItem x:Name="FrozeReviewMI" Header="Отзыв" Click="Froze_Click"/>
                 </MenuItem>
             </Menu>
         </StackPanel>
@@ -63,7 +64,7 @@
                                 <TextBlock Text="{Binding User.Username, StringFormat=Пользователь: {0}}" Margin="10, 10, 10, 10" HorizontalAlignment="Center" TextWrapping="Wrap"/>
                                 <TextBlock Text="{Binding Rating, StringFormat=Оценка: {0}/10}" Margin="0, 10, 10, 10" HorizontalAlignment="Center"/>
                                 <TextBlock Text="{Binding Text, StringFormat=Комментарий: {0}}" Margin="0, 10, 10, 10" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                                <Menu Margin="0,10,10,10" Visibility="Visible">
+                                <Menu Margin="0,10,10,10">
                                     <MenuItem x:Name="ReportReviewMI" Header="Пожаловаться" Background="#dddddd" BorderBrush="Black" BorderThickness="1" Tag="{Binding}" Width="100" Height="20" Click="Report_Click"/>
                                 </Menu>
                             </WrapPanel>
