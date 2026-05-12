@@ -5,10 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UP_01_Krasnova.Windows"
         mc:Ignorable="d"
-        Title="MakeEditBookWindow" Height="400" Width="400">
+        Title="MakeEditBookWindow" Height="300" Width="300">
     <Grid>
         <StackPanel>
-            <TextBlock/>
+            <TextBlock x:Name="HeaderTB" Text="Новая книга" HorizontalAlignment="Center" Margin="10"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Название: " Margin="10"/>
+                <TextBox x:Name="NameTB" Width="200" Margin="0,10,10,10"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Описание: " Margin="10"/>
+                <TextBox x:Name="DescriptionTB" Width="200" Margin="0,10,10,10"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Текст книги: " Margin="10"/>
+                <TextBox x:Name="TextTB" Width="200" Margin="0,10,10,10"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Обложка: " Margin="10"/>
+                <TextBox x:Name="CoverTB" Width="200" Margin="0,10,10,10"/>
+            </StackPanel>
+            <Button x:Name="MakeEditBookBtn" Content="Создать книгу" Margin="10" Width="100" Click="MakeEditBookBtn_Click"/>
         </StackPanel>
     </Grid>
 </Window>
