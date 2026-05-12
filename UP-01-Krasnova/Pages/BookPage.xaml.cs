@@ -128,6 +128,7 @@ namespace UP_01_Krasnova.Pages
                             book.IsFrozen = true;
                             Core.Context.SaveChanges();
                             MessageBox.Show("Книга успешно заморожена!");
+                            NavigationService.Navigate(new BookCatalogPage());
                         }
                     }
                     else { MessageBox.Show("Книга уже заморожена!"); }
