@@ -60,13 +60,13 @@
         </StackPanel>
 
         <StackPanel x:Name="BecomeAuthorSP" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden">
-            <TextBlock Text="Хотите стать автором?&#10;Вы можете подать завяку прямо здесь" TextWrapping="Wrap" Margin="10,0,10,0"/>
-            <Button x:Name="BecomeAuthorBtn" Content="Подать заявку" Margin="10"/>
+            <TextBlock x:Name="BecomeAuthorTB" Text="Хотите стать автором?&#10;Вы можете подать завяку прямо здесь" TextWrapping="Wrap" Margin="10,0,10,0"/>
+            <Button x:Name="BecomeAuthorBtn" Content="Подать заявку" Margin="10" Click="BecomeAuthorBtn_Click"/>
         </StackPanel>
 
         <StackPanel x:Name="UnfreezeAccSP" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden">
             <TextBlock x:Name="UnfreezeAccTB" Text="Ваш аккаунт заморожен.&#10;Причина: " TextWrapping="Wrap" Margin="10,0,10,0"/>
-            <Button x:Name="UnfreezeAccBtn" Content="Оспорить заморозку" Margin="10"/>
+            <Button x:Name="UnfreezeAccBtn" Content="Оспорить заморозку" Margin="10" Click="UnfreezeAccBtn_Click"/>
         </StackPanel>
     </Grid>
 </Page>

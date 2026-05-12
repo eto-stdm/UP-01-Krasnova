@@ -16,8 +16,9 @@ namespace UP_01_Krasnova
     {
         public int UnFreezeApplicationID { get; set; }
         public System.DateTime ApplicationDate { get; set; }
-        public int UserID { get; set; }
+        public Nullable<int> UserID { get; set; }
         public Nullable<int> BookID { get; set; }
+        public Nullable<int> ReviewID { get; set; }
         public int StatusID { get; set; }
     
         public virtual Book Book { get; set; }

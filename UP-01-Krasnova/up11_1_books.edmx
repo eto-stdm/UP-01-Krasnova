@@ -54,7 +54,7 @@
             <PropertyRef Name="ReportID" />
           </Key>
           <Property Name="ReportID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" />
           <Property Name="ReviewID" Type="int" />
           <Property Name="BookID" Type="int" />
           <Property Name="Reason" Type="nvarchar(max)" Nullable="false" />
@@ -109,8 +109,9 @@
           </Key>
           <Property Name="UnFreezeApplicationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ApplicationDate" Type="datetime" Nullable="false" />
-          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" />
           <Property Name="BookID" Type="int" />
+          <Property Name="ReviewID" Type="int" />
           <Property Name="StatusID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
@@ -210,7 +211,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Report_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Report" Type="Self.Report" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
@@ -294,7 +295,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UnFreezeApplication_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="UnFreezeApplication" Type="Self.UnFreezeApplication" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
@@ -463,7 +464,7 @@
             <PropertyRef Name="ReportID" />
           </Key>
           <Property Name="ReportID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" />
           <Property Name="ReviewID" Type="Int32" />
           <Property Name="BookID" Type="Int32" />
           <Property Name="Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
@@ -527,8 +528,9 @@
           </Key>
           <Property Name="UnFreezeApplicationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ApplicationDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" />
           <Property Name="BookID" Type="Int32" />
+          <Property Name="ReviewID" Type="Int32" />
           <Property Name="StatusID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Book" Relationship="Self.FK_UnFreezeApplication_Book" FromRole="UnFreezeApplication" ToRole="Book" />
           <NavigationProperty Name="Status" Relationship="Self.FK_UnFreezeApplication_Status" FromRole="UnFreezeApplication" ToRole="Status" />
@@ -662,7 +664,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Report_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Report" Type="Self.Report" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
@@ -734,7 +736,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UnFreezeApplication_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="UnFreezeApplication" Type="Self.UnFreezeApplication" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
@@ -946,6 +948,7 @@
                 <ScalarProperty Name="ApplicationDate" ColumnName="ApplicationDate" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="BookID" ColumnName="BookID" />
+                <ScalarProperty Name="ReviewID" ColumnName="ReviewID" />
                 <ScalarProperty Name="StatusID" ColumnName="StatusID" />
               </MappingFragment>
             </EntityTypeMapping>

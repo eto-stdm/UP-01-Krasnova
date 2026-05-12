@@ -125,9 +125,6 @@
     <Compile Include="Windows\AddToListWindow.xaml.cs">
       <DependentUpon>AddToListWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\BecomeAuthorWindow.xaml.cs">
-      <DependentUpon>BecomeAuthorWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Windows\EditBookWindow.xaml.cs">
       <DependentUpon>EditBookWindow.xaml</DependentUpon>
     </Compile>
@@ -193,10 +190,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\AddToListWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\BecomeAuthorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -297,6 +290,8 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\exit.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="up11_1_books.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>up11_1_books.edmx</DependentUpon>

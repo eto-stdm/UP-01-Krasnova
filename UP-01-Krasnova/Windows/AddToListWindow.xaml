@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UP_01_Krasnova.Windows"
         mc:Ignorable="d"
-        Title="Добавить в список" Height="230" Width="200">
+        Title="AddToListWindow" Height="230" Width="200">
     <Grid>
         <StackPanel>
             <TextBlock x:Name="BookNameTB" Text="Книга: " Margin="10,0,10,0"/>

@@ -15,7 +15,7 @@ namespace UP_01_Krasnova
     public partial class Report
     {
         public int ReportID { get; set; }
-        public int UserID { get; set; }
+        public Nullable<int> UserID { get; set; }
         public Nullable<int> ReviewID { get; set; }
         public Nullable<int> BookID { get; set; }
         public string Reason { get; set; }
