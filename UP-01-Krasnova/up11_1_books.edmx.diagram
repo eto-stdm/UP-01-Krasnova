@@ -4,19 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="7df3bae1c9964408a8a47736a832a582" Name="Diagram1">
-        <EntityTypeShape EntityType="up11_1_booksModel.Book" Width="1.5" PointX="5.25" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="up11_1_booksModel.BookGenre" Width="1.5" PointX="7.5" PointY="9.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="up11_1_booksModel.Genre" Width="1.5" PointX="5.25" PointY="14" IsExpanded="true" />
-        <EntityTypeShape EntityType="up11_1_booksModel.ListType" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="up11_1_booksModel.ReadingList" Width="1.5" PointX="7.5" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="up11_1_booksModel.Report" Width="1.5" PointX="10.5" PointY="9.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="up11_1_booksModel.Review" Width="1.5" PointX="7.5" PointY="12.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="up11_1_booksModel.Role" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
+      <Diagram DiagramId="9b3d42d0d74a40d1b14f19897554f12e" Name="Diagram1">
+        <EntityTypeShape EntityType="up11_1_booksModel.Book" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="up11_1_booksModel.BookGenre" Width="1.5" PointX="7.5" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="up11_1_booksModel.Genre" Width="1.5" PointX="5.25" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="up11_1_booksModel.ListType" Width="1.5" PointX="5.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="up11_1_booksModel.ReadingList" Width="1.5" PointX="7.5" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="up11_1_booksModel.Report" Width="1.5" PointX="10.5" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="up11_1_booksModel.Review" Width="1.5" PointX="7.5" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="up11_1_booksModel.Role" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
         <EntityTypeShape EntityType="up11_1_booksModel.RoleApplication" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="up11_1_booksModel.Status" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="up11_1_booksModel.Status" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="up11_1_booksModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="up11_1_booksModel.UnFreezeApplication" Width="1.5" PointX="10.5" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="up11_1_booksModel.UnFreezeApplication" Width="1.5" PointX="10.5" PointY="5.625" IsExpanded="true" />
         <EntityTypeShape EntityType="up11_1_booksModel.User" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
         <AssociationConnector Association="up11_1_booksModel.FK_Book_User" ManuallyRouted="false" />
         <AssociationConnector Association="up11_1_booksModel.FK_BookGenre_Book" ManuallyRouted="false" />

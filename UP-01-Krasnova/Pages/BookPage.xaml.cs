@@ -43,7 +43,7 @@ namespace UP_01_Krasnova.Pages
             GenresTB.Text += book.Genre;
             RatingTB.Text += book.TotalRating;
 
-            ReviewsLB.ItemsSource = Core.Context.Review.Where(x => x.BookID == book.BookID).ToList();
+            ReviewsLB.ItemsSource = Core.Context.Review.Where(x => x.BookID == book.BookID && x.IsFrozen == false).ToList();
         }
 
         private void ReadBtn_Click(object sender, RoutedEventArgs e)

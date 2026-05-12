@@ -20,6 +20,7 @@ namespace UP_01_Krasnova
         public int Rating { get; set; }
         public string Text { get; set; }
         public System.DateTime Date { get; set; }
+        public bool IsFrozen { get; set; }
     
         public virtual Book Book { get; set; }
         public virtual User User { get; set; }
