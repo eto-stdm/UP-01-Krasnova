@@ -125,20 +125,14 @@
     <Compile Include="Windows\AddToListWindow.xaml.cs">
       <DependentUpon>AddToListWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\EditBookWindow.xaml.cs">
-      <DependentUpon>EditBookWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\MakeNewBookWindow.xaml.cs">
-      <DependentUpon>MakeNewBookWindow.xaml</DependentUpon>
+    <Compile Include="Windows\MakeEditBookWindow.xaml.cs">
+      <DependentUpon>MakeEditBookWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\MakeReportWindow.xaml.cs">
       <DependentUpon>MakeReportWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\MakeReviewWindow.xaml.cs">
       <DependentUpon>MakeReviewWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Windows\UnfreezeWindow.xaml.cs">
-      <DependentUpon>UnfreezeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\WholeBookTextWindow.xaml.cs">
       <DependentUpon>WholeBookTextWindow.xaml</DependentUpon>
@@ -193,11 +187,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\EditBookWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\MakeNewBookWindow.xaml">
+    <Page Include="Windows\MakeEditBookWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -206,10 +196,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\MakeReviewWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\UnfreezeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

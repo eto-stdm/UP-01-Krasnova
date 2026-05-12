@@ -15,13 +15,17 @@ using System.Windows.Shapes;
 namespace UP_01_Krasnova.Windows
 {
     /// <summary>
-    /// Логика взаимодействия для UnfreezeWindow.xaml
+    /// Логика взаимодействия для MakeEditBookWindow.xaml
     /// </summary>
-    public partial class UnfreezeWindow : Window
+    public partial class MakeEditBookWindow : Window
     {
-        public UnfreezeWindow()
+        private Book book {  get; set; }
+        public MakeEditBookWindow(Book book)
         {
             InitializeComponent();
+            this.book = book;
+
+
         }
     }
 }

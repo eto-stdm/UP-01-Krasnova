@@ -9,6 +9,50 @@
       Title="AuthorPage">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="45"></ColumnDefinition>
+            <ColumnDefinition Width="300"></ColumnDefinition>
+            <ColumnDefinition Width="300"></ColumnDefinition>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock Text="Страница автора" FontSize="16" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+            <Button x:Name="ShowPublishedBtn" Content="Опубликованные" Margin="10,0,10,10" Click="ChangeList_Click"/>
+            <Button x:Name="ShowFrozenBtn" Content="Замороженные" Margin="0,0,10,10" Click="ChangeList_Click"/>
+            <Button x:Name="NewBookBtn" Content="Новая книга" Margin="50,0,10,10" Click="NewBookBtn_Click"/>
+            <Button x:Name="EditBookBtn" Content="Редактировать книгу" Margin="0,0,10,10" Click="EditBookBtn_Click"/>
+            <Button x:Name="UnfreezeBookBtn" Content="Разморозить книгу" Margin="0,0,10,10" Click="UnfreezeBookBtn_Click" Visibility="Collapsed"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalAlignment="Center">
+            <ListBox x:Name="BooksLB" MouseDoubleClick="BooksLB_MouseDoubleClick" ScrollViewer.HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Center" Margin="10" Height="230" Width="580">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Height="220" Width="128" Margin="0">
+                            <StackPanel Margin="0" Orientation="Horizontal">
+                                <Image Source="/Images/Image.PNG" Width="100" Height="100" Margin="10" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{Binding Name, StringFormat=Название: {0}}" Margin="10, 0, 10, 10" HorizontalAlignment="Center" TextWrapping="Wrap"/>
+                                <TextBlock Text="{Binding TotalRating, StringFormat=Рейтинг: {0}/10}" Margin="10, 0, 10, 10" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+        </StackPanel>
     </Grid>
 </Page>
