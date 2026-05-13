@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UP_01_Krasnova.Windows;
 
 namespace UP_01_Krasnova.Pages
 {
@@ -42,8 +43,8 @@ namespace UP_01_Krasnova.Pages
         private void UpdateAllLB()
         {
             ReportsLB.ItemsSource = Core.Context.Report.ToList();
-            UnfreezeAppLB.ItemsSource = Core.Context.Report.ToList();
-            RoleAppLB.ItemsSource = Core.Context.RoleApplication.ToList();
+            UnfreezeAppLB.ItemsSource = Core.Context.UnFreezeApplication.Where(x => x.StatusID == 1).ToList();
+            RoleAppLB.ItemsSource = Core.Context.RoleApplication.Where(x => x.StatusID == 1).ToList();
             FrozenBooksLB.ItemsSource = Core.Context.Book.Where(x => x.IsFrozen == true).ToList();
             FrozenUsersLB.ItemsSource = Core.Context.User.Where(x => x.IsFrozen == true).ToList();
             FrozenReviewsLB.ItemsSource = Core.Context.Review.Where(x => x.IsFrozen == true).ToList();
@@ -59,13 +60,27 @@ namespace UP_01_Krasnova.Pages
             //bool caughtDup = false;
             switch (mi.Name)
             {
-                case "ReportsMI": break;
-                case "UnfreezeAppMI": break;
-                case "RoleAppMI": break;
-                case "FrozenBooksMI": break;
-                case "FrozenUsersMI": break;
-                case "FrozenReviewsMI": break;
-                case "UsersMI": break;
+                case "ReportsMI":
+                    ReportsSP.Visibility = Visibility.Visible;
+                    break;
+                case "UnfreezeAppMI":
+                    UnfreezeAppSP.Visibility = Visibility.Visible;
+                    break;
+                case "RoleAppMI":
+                    RoleAppSP.Visibility = Visibility.Visible;
+                    break;
+                case "FrozenBooksMI":
+                    FrozenBooksSP.Visibility = Visibility.Visible;
+                    break;
+                case "FrozenUsersMI":
+                    FrozenUsersSP.Visibility = Visibility.Visible;
+                    break;
+                case "FrozenReviewsMI":
+                    FrozenReviewsSP.Visibility = Visibility.Visible;
+                    break;
+                case "UsersMI":
+                    UsersSP.Visibility = Visibility.Visible;
+                    break;
                 default: break;
             }
 
@@ -92,6 +107,31 @@ namespace UP_01_Krasnova.Pages
                 case "DeclineUnfreezeBtn": break;
                 case "DeclineRoleBtn": break;
                 default: break;
+            }
+        }
+
+        private void ChangeRole_Click(object sender, RoutedEventArgs e)
+        {
+            var btn = (MenuItem)sender;
+            switch (btn.Name)
+            {
+                case "ChangeRoleReaderMI": break;
+                case "ChangeRoleAuthorMI": break;
+                case "ChangeRoleAdminMI": break;
+                default: break;
+            }
+        }
+
+        private void ChangePasswordBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            if (button?.Tag is User user)
+            {
+                var window = new ChangePasswordWindow(user);
+                if (window.ShowDialog() == true)
+                {
+                    MessageBox.Show($"Пароль пользователя '{user.Username}' успешно изменён!");
+                }
             }
         }
     }

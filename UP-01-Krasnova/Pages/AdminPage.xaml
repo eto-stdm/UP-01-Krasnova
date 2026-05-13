@@ -28,7 +28,7 @@
 
         <StackPanel Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
             <Menu Margin="10">
-                <MenuItem x:Name="ReportsMI" Header="Жалобы" VerticalContentAlignment="Center" Height="30" Background="#dddddd" BorderBrush="Black" BorderThickness="1"/>
+                <MenuItem x:Name="ReportsMI" Header="Жалобы" VerticalContentAlignment="Center" Height="30" Background="#dddddd" BorderBrush="Black" BorderThickness="1" Click="ChangeList_Click"/>
                 <MenuItem Header="Заявки на:" VerticalContentAlignment="Center" Height="30" Background="#dddddd" BorderBrush="Black" BorderThickness="1">
                     <MenuItem x:Name="UnfreezeAppMI" Header="Снятие блокировки"  Click="ChangeList_Click"/>
                     <MenuItem x:Name="RoleAppMI" Header="Роль автора"  Click="ChangeList_Click"/>
@@ -86,12 +86,12 @@
                             </Grid.ColumnDefinitions>
 
                             <WrapPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="0">
-                                <TextBlock Text="{Binding Date, StringFormat=Дата: dd.MM.yyyy}" Margin="0, 10, 10, 10"/>
-                                <TextBlock Text="Кто/что:" Margin="0, 10, 10, 10"/>
+                                <TextBlock Text="{Binding ApplicationDate, StringFormat=Дата: dd.MM.yyyy}" Margin="0, 10, 10, 10"/>
+                                <TextBlock Text="Кто/что:" Margin="0, 10, 5, 10"/>
                                 <TextBlock Text="{Binding User.Username}" Margin="0, 10"/>
                                 <TextBlock Text="{Binding Review.Text}" Margin="0, 10"/>
                                 <TextBlock Text="{Binding Book.Name}" Margin="0, 10"/>
-                                <TextBlock Text="{Binding Status, StringFormat=Статус: {0}}" Margin="10"/>
+                                <TextBlock Text="{Binding Status.Name, StringFormat=Статус: {0}}" Margin="10"/>
                             </WrapPanel>
                             <StackPanel Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
                                 <Button x:Name="AcceptUnfreezeBtn" Content="Принять" FontSize="9" Height="20" Click="Accept_Click"/>
@@ -121,7 +121,7 @@
                             <WrapPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="0">
                                 <TextBlock Text="{Binding ApplicationDate, StringFormat=Дата: dd.MM.yyyy}" Margin="0, 10, 10, 10"/>
                                 <TextBlock Text="{Binding User.Username, StringFormat=Пользователь: {0}}" Margin="0, 10"/>
-                                <TextBlock Text="{Binding Status, StringFormat=Статус: {0}}" Margin="10"/>
+                                <TextBlock Text="{Binding Status.Name, StringFormat=Статус: {0}}" Margin="10"/>
                             </WrapPanel>
                             <StackPanel Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
                                 <Button x:Name="AcceptRoleBtn" Content="Принять" FontSize="9" Height="20" Click="Accept_Click"/>
@@ -165,7 +165,7 @@
                         <Grid Height="50" Width="560" Margin="10">
                             <WrapPanel Orientation="Horizontal" VerticalAlignment="Center">
                                 <TextBlock Text="{Binding Login, StringFormat=Логин: {0}}" Margin="0, 10, 10, 10"/>
-                                <TextBlock Text="{Binding User.Username, StringFormat=Отображаемое имя: {0}}" Margin="0, 10, 10, 10"/>
+                                <TextBlock Text="{Binding Username, StringFormat=Отображаемое имя: {0}}" Margin="0, 10, 10, 10"/>
                                 <TextBlock Text="{Binding Email, StringFormat=Почта: {0}}" Margin="0, 10, 10, 10"/>
                                 <TextBlock Text="{Binding Role.Name, StringFormat=Роль: {0}}" Margin="0, 10, 10, 10"/>
                             </WrapPanel>
@@ -209,19 +209,25 @@
                     <DataTemplate>
                         <Grid Height="50" Width="560" Margin="10">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="480"/>
+                                <ColumnDefinition Width="420"/>
                                 <ColumnDefinition Width="100"/>
                             </Grid.ColumnDefinitions>
 
                             <WrapPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="0">
                                 <TextBlock Text="{Binding Login, StringFormat=Логин: {0}}" Margin="0, 10, 10, 10"/>
-                                <TextBlock Text="{Binding User.Username, StringFormat=Отображаемое имя: {0}}" Margin="0, 10, 10, 10"/>
+                                <TextBlock Text="{Binding Username, StringFormat=Отображаемое имя: {0}}" Margin="0, 10, 10, 10"/>
                                 <TextBlock Text="{Binding Email, StringFormat=Почта: {0}}" Margin="0, 10, 10, 10"/>
                                 <TextBlock Text="{Binding Role.Name, StringFormat=Роль: {0}}" Margin="0, 10, 10, 10"/>
                             </WrapPanel>
                             <StackPanel Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                <Button x:Name="AcceptUnfreezeBtn" Content="Принять" FontSize="9" Height="20" Click="Accept_Click"/>
-                                <Button x:Name="DeclineUnfreezeBtn" Content="Отклонить" FontSize="9" Height="20" Click="Decline_Click"/>
+                                <Menu Height="20">
+                                    <MenuItem Header="    Изменить роль" FontSize="9" VerticalContentAlignment="Center" Height="20" Width="100" Background="#dddddd" BorderBrush="Black" BorderThickness="1">
+                                        <MenuItem x:Name="ChangeRoleReaderMI" Header="Клиент" Click="ChangeRole_Click"/>
+                                        <MenuItem x:Name="ChangeRoleAuthorMI" Header="Автор" Click="ChangeRole_Click"/>
+                                        <MenuItem x:Name="ChangeRoleAdminMI" Header="Админ" Click="ChangeRole_Click"/>
+                                    </MenuItem>
+                                </Menu>
+                                <Button x:Name="ChangePasswordBtn" Content="Сменить пароль" Tag="{Binding}" FontSize="9" Height="20" Click="ChangePasswordBtn_Click"/>
                             </StackPanel>
                         </Grid>
                     </DataTemplate>
