@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UP_01_Krasnova.Classes;
 using UP_01_Krasnova.Windows;
 
 namespace UP_01_Krasnova.Pages
@@ -24,6 +25,8 @@ namespace UP_01_Krasnova.Pages
         public AuthorPage()
         {
             InitializeComponent();
+            List<Book> books = Core.Context.Book.Where(x => x.IsFrozen == false && x.AuthorID == State.CurrentUserID).ToList();
+            BooksLB.ItemsSource = books;
         }
 
         private void ChangeList_Click(object sender, RoutedEventArgs e)
@@ -34,13 +37,11 @@ namespace UP_01_Krasnova.Pages
             switch (butn.Name)
             {
                 case "ShowPublishedBtn":
-                    books = Core.Context.Book.Where(x => x.IsFrozen == false).ToList();
-                    EditBookBtn.Visibility = Visibility.Visible;
+                    books = Core.Context.Book.Where(x => x.IsFrozen == false && x.AuthorID == State.CurrentUserID).ToList();
                     UnfreezeBookBtn.Visibility = Visibility.Collapsed;
                     break;
                 case "ShowFrozenBtn":
-                    books = Core.Context.Book.Where(x => x.IsFrozen == true).ToList();
-                    EditBookBtn.Visibility = Visibility.Collapsed;
+                    books = Core.Context.Book.Where(x => x.IsFrozen == true && x.AuthorID == State.CurrentUserID).ToList();
                     UnfreezeBookBtn.Visibility = Visibility.Visible;
                     break;
                 default: break;
@@ -104,6 +105,7 @@ namespace UP_01_Krasnova.Pages
                         };
                         Core.Context.UnFreezeApplication.Add(app);
                         Core.Context.SaveChanges();
+                        MessageBox.Show("Вы успешно подали заявку на разморозку этой книги!");
                     }
                     else { MessageBox.Show("Заявка на разморозку этой книги уже подана!"); }
                 }

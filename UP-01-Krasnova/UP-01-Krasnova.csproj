@@ -73,6 +73,7 @@
     <Compile Include="BookGenre.cs">
       <DependentUpon>up11_1_books.tt</DependentUpon>
     </Compile>
+    <Compile Include="Classes\Box.cs" />
     <Compile Include="Genre.cs">
       <DependentUpon>up11_1_books.tt</DependentUpon>
     </Compile>

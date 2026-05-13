@@ -25,6 +25,7 @@ namespace UP_01_Krasnova.Windows
         {
             InitializeComponent();
             this.book = book;
+            List<Box> box = new List<Box>();
 
             if (book != null)
             {
@@ -34,7 +35,40 @@ namespace UP_01_Krasnova.Windows
                 TextTB.Text = book.Body;
                 CoverTB.Text = book.Cover;
                 MakeEditBookBtn.Content = "Применить изменения";
+
+                List<BookGenre> bg = Core.Context.BookGenre.Where(x => x.BookID == book.BookID).ToList();
+                foreach (Genre g in Core.Context.Genre)
+                {
+                    Box tempBox;
+                    if (bg.FirstOrDefault(x => x.GenreID == g.GenreID) != null) //у книги есть выбранный жанр
+                    {
+                        tempBox = new Box
+                        {
+                            ID = g.GenreID,
+                            Name = g.Name,
+                            Check = true
+                        };
+                    }
+                    else
+                    {
+                        tempBox = new Box
+                        {
+                            ID = g.GenreID,
+                            Name = g.Name,
+                            Check = false
+                        };
+                    }
+                    box.Add(tempBox);
+                }
             }
+            else
+            {
+                foreach (Genre g in Core.Context.Genre)
+                {
+                    box.Add(new Box { ID = g.GenreID, Name = g.Name, Check = false });
+                }
+            }
+            GenresLB.ItemsSource = box;
         }
 
         private void MakeBook()
@@ -49,6 +83,19 @@ namespace UP_01_Krasnova.Windows
                 IsFrozen = false,
             };
             Core.Context.Book.Add(book);
+
+            foreach (Box item in GenresLB.ItemsSource)
+            {
+                if (item.Check)
+                {
+                    BookGenre bg = new BookGenre
+                    {
+                        BookID = book.BookID,
+                        GenreID = item.ID
+                    };
+                    Core.Context.BookGenre.Add(bg);
+                }
+            }
             Core.Context.SaveChanges();
         }
 
@@ -58,6 +105,29 @@ namespace UP_01_Krasnova.Windows
             book.Description = DescriptionTB.Text;
             book.Body = TextTB.Text;
             book.Cover = CoverTB.Text;
+
+            foreach (Box item in GenresLB.ItemsSource)
+            {
+                if (item.Check) // выбранно
+                {
+                    if (Core.Context.BookGenre.FirstOrDefault(x => x.BookID == book.BookID && x.GenreID == item.ID) == null) // нет записи
+                    {
+                        BookGenre bg = new BookGenre
+                        {
+                            BookID = book.BookID,
+                            GenreID = item.ID
+                        };
+                        Core.Context.BookGenre.Add(bg);
+                    }
+                }
+                else // не выбранно
+                {
+                    if (Core.Context.BookGenre.FirstOrDefault(x => x.BookID == book.BookID && x.GenreID == item.ID) != null) // есть запись
+                    {
+                        Core.Context.BookGenre.Remove(Core.Context.BookGenre.FirstOrDefault(x => x.BookID == book.BookID && x.GenreID == item.ID));
+                    }
+                }
+            }
             Core.Context.SaveChanges();
         }
 

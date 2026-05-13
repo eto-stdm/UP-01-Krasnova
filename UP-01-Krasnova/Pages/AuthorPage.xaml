@@ -35,11 +35,11 @@
         </StackPanel>
 
         <StackPanel Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalAlignment="Center">
-            <ListBox x:Name="BooksLB" MouseDoubleClick="BooksLB_MouseDoubleClick" ScrollViewer.HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Center" Margin="10" Height="230" Width="580">
+            <ListBox x:Name="BooksLB" ScrollViewer.HorizontalScrollBarVisibility="Disabled" VerticalAlignment="Center" Margin="10" Height="230" Width="580">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid Height="220" Width="128" Margin="0">
-                            <StackPanel Margin="0" Orientation="Horizontal">
+                            <StackPanel Margin="0" VerticalAlignment="Center">
                                 <Image Source="/Images/Image.PNG" Width="100" Height="100" Margin="10" HorizontalAlignment="Center"/>
                                 <TextBlock Text="{Binding Name, StringFormat=Название: {0}}" Margin="10, 0, 10, 10" HorizontalAlignment="Center" TextWrapping="Wrap"/>
                                 <TextBlock Text="{Binding TotalRating, StringFormat=Рейтинг: {0}/10}" Margin="10, 0, 10, 10" HorizontalAlignment="Center"/>
