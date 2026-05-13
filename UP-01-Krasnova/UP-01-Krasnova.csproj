@@ -277,7 +277,7 @@
     <Resource Include="Images\booklist.png" />
     <Resource Include="Images\profile.png" />
     <Resource Include="Images\warning.png" />
-    <Resource Include="Images\Image.PNG" />
+    <Resource Include="Images\Covers\Image.PNG" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -286,6 +286,15 @@
     <Resource Include="Images\exit.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\Covers\Cover1.jpg" />
+    <Resource Include="Images\Covers\Cover2.jpg" />
+    <Resource Include="Images\Covers\Cover3.jpg" />
+    <Resource Include="Images\Covers\Cover4.jpg" />
+    <Resource Include="Images\Covers\Cover5.jpg" />
+    <Resource Include="Images\Covers\Cover6.jpg" />
+    <Resource Include="Images\Covers\Cover7.jpg" />
+    <Resource Include="Images\Covers\Cover8.jpg" />
+    <Resource Include="Images\Covers\Cover9.jpg" />
     <Content Include="up11_1_books.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>up11_1_books.edmx</DependentUpon>

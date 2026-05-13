@@ -88,7 +88,7 @@ namespace UP_01_Krasnova.Pages
             var btn = (Button)sender;
             switch (btn.Name)
             {
-                case "AcceptReportsBtn":
+                case "AcceptReportBtn":
                     if (btn?.Tag is Report report)
                     {
                         if (report.UserID != null)
@@ -182,8 +182,8 @@ namespace UP_01_Krasnova.Pages
             if (user.RoleID != roleID)
             {
                 user.RoleID = roleID;
-                MessageBox.Show($"Роль пользователя {user.Username} был была изменена на {user.Role.Name}");
                 Core.Context.SaveChanges();
+                MessageBox.Show($"Роль пользователя {user.Username} была изменена на {user.Role.Name}");
             }
             else { MessageBox.Show($"Роль {user.Role.Name} совпадает с текущей. Нет изменений"); }
         }
