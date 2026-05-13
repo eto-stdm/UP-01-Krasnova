@@ -126,6 +126,9 @@
     <Compile Include="Windows\AddToListWindow.xaml.cs">
       <DependentUpon>AddToListWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\ChangePasswordWindow.xaml.cs">
+      <DependentUpon>ChangePasswordWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\MakeEditBookWindow.xaml.cs">
       <DependentUpon>MakeEditBookWindow.xaml</DependentUpon>
     </Compile>
@@ -185,6 +188,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\AddToListWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ChangePasswordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
