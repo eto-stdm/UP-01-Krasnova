@@ -61,8 +61,8 @@
                                 <TextBlock Text="{Binding Reason, StringFormat=Причина: {0}}" Margin="10"/>
                             </WrapPanel>
                             <StackPanel Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                <Button x:Name="AcceptReportBtn" Content="Принять" FontSize="9" Height="20" Click="Accept_Click"/>
-                                <Button x:Name="DeclineReportBtn" Content="Отклонить" FontSize="9" Height="20" Click="Decline_Click"/>
+                                <Button x:Name="AcceptReportBtn" Content="Принять" Tag="{Binding}" FontSize="9" Height="20" Click="Accept_Click"/>
+                                <Button x:Name="DeclineReportBtn" Content="Отклонить" Tag="{Binding}" FontSize="9" Height="20" Click="Decline_Click"/>
                             </StackPanel>
                         </Grid>
                     </DataTemplate>
@@ -94,8 +94,8 @@
                                 <TextBlock Text="{Binding Status.Name, StringFormat=Статус: {0}}" Margin="10"/>
                             </WrapPanel>
                             <StackPanel Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                <Button x:Name="AcceptUnfreezeBtn" Content="Принять" FontSize="9" Height="20" Click="Accept_Click"/>
-                                <Button x:Name="DeclineUnfreezeBtn" Content="Отклонить" FontSize="9" Height="20" Click="Decline_Click"/>
+                                <Button x:Name="AcceptUnfreezeBtn" Content="Принять" Tag="{Binding}" FontSize="9" Height="20" Click="Accept_Click"/>
+                                <Button x:Name="DeclineUnfreezeBtn" Content="Отклонить" Tag="{Binding}" FontSize="9" Height="20" Click="Decline_Click"/>
                             </StackPanel>
                         </Grid>
                     </DataTemplate>
@@ -124,8 +124,8 @@
                                 <TextBlock Text="{Binding Status.Name, StringFormat=Статус: {0}}" Margin="10"/>
                             </WrapPanel>
                             <StackPanel Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                <Button x:Name="AcceptRoleBtn" Content="Принять" FontSize="9" Height="20" Click="Accept_Click"/>
-                                <Button x:Name="DeclineRoleBtn" Content="Отклонить" FontSize="9" Height="20" Click="Decline_Click"/>
+                                <Button x:Name="AcceptRoleBtn" Content="Принять" Tag="{Binding}" FontSize="9" Height="20" Click="Accept_Click"/>
+                                <Button x:Name="DeclineRoleBtn" Content="Отклонить" Tag="{Binding}" FontSize="9" Height="20" Click="Decline_Click"/>
                             </StackPanel>
                         </Grid>
                     </DataTemplate>
@@ -222,9 +222,9 @@
                             <StackPanel Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
                                 <Menu Height="20">
                                     <MenuItem Header="    Изменить роль" FontSize="9" VerticalContentAlignment="Center" Height="20" Width="100" Background="#dddddd" BorderBrush="Black" BorderThickness="1">
-                                        <MenuItem x:Name="ChangeRoleReaderMI" Header="Клиент" Click="ChangeRole_Click"/>
-                                        <MenuItem x:Name="ChangeRoleAuthorMI" Header="Автор" Click="ChangeRole_Click"/>
-                                        <MenuItem x:Name="ChangeRoleAdminMI" Header="Админ" Click="ChangeRole_Click"/>
+                                        <MenuItem x:Name="ChangeRoleReaderMI" Header="Клиент" Tag="{Binding}" Click="ChangeRole_Click"/>
+                                        <MenuItem x:Name="ChangeRoleAuthorMI" Header="Автор" Tag="{Binding}" Click="ChangeRole_Click"/>
+                                        <MenuItem x:Name="ChangeRoleAdminMI" Header="Админ" Tag="{Binding}" Click="ChangeRole_Click"/>
                                     </MenuItem>
                                 </Menu>
                                 <Button x:Name="ChangePasswordBtn" Content="Сменить пароль" Tag="{Binding}" FontSize="9" Height="20" Click="ChangePasswordBtn_Click"/>

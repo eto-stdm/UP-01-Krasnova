@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UP_01_Krasnova.Classes;
 using UP_01_Krasnova.Windows;
 
 namespace UP_01_Krasnova.Pages
@@ -55,9 +56,6 @@ namespace UP_01_Krasnova.Pages
         {
             HideAllLB();
             var mi = (MenuItem)sender;
-            //string objType = null;
-            //object newObj = null;
-            //bool caughtDup = false;
             switch (mi.Name)
             {
                 case "ReportsMI":
@@ -83,7 +81,6 @@ namespace UP_01_Krasnova.Pages
                     break;
                 default: break;
             }
-
         }
 
         private void Accept_Click(object sender, RoutedEventArgs e)
@@ -91,11 +88,58 @@ namespace UP_01_Krasnova.Pages
             var btn = (Button)sender;
             switch (btn.Name)
             {
-                case "AcceptReportsBtn": break;
-                case "AcceptUnfreezeBtn": break;
-                case "AcceptRoleBtn": break;
+                case "AcceptReportsBtn":
+                    if (btn?.Tag is Report report)
+                    {
+                        if (report.UserID != null)
+                        {
+                            //User bannedUser = Core.Context.User.FirstOrDefault(x => x.UserID == report.UserID);
+                            //bannedUser.IsFrozen = true;
+                            Core.Context.User.FirstOrDefault(x => x.UserID == report.UserID).IsFrozen = true;
+                        }
+                        else if (report.ReviewID != null)
+                        {
+                            Core.Context.Review.FirstOrDefault(x => x.ReviewID == report.ReviewID).IsFrozen = true;
+                        }
+                        else if (report.BookID != null)
+                        {
+                            Core.Context.Book.FirstOrDefault(x => x.BookID == report.BookID).IsFrozen = true;
+                        }
+                        Core.Context.Report.Remove(report);
+                        MessageBox.Show("Жалоба была принята!");
+                    }
+                    break;
+                case "AcceptUnfreezeBtn":
+                    if (btn?.Tag is UnFreezeApplication unFreeze)
+                    {
+                        if (unFreeze.UserID != null)
+                        {
+                            Core.Context.User.FirstOrDefault(x => x.UserID == unFreeze.UserID).IsFrozen = false;
+                        }
+                        else if (unFreeze.ReviewID != null)
+                        {
+                            Core.Context.Review.FirstOrDefault(x => x.ReviewID == unFreeze.ReviewID).IsFrozen = false;
+                        }
+                        else if (unFreeze.BookID != null)
+                        {
+                            Core.Context.Book.FirstOrDefault(x => x.BookID == unFreeze.BookID).IsFrozen = false;
+                        }
+                        unFreeze.StatusID = 2;
+                        MessageBox.Show("Разморозка была принята!");
+                    }
+                    break;
+                case "AcceptRoleBtn":
+                    if (btn?.Tag is RoleApplication roleApp)
+                    {
+                        Core.Context.User.FirstOrDefault(x => x.UserID == roleApp.UserID).RoleID = 2;
+                        roleApp.StatusID = 2;
+                        MessageBox.Show("Изменение роли было принято!");
+                    }
+                    break;
                 default: break;
             }
+            Core.Context.SaveChanges();
+            UpdateAllLB();
         }
 
         private void Decline_Click(object sender, RoutedEventArgs e)
@@ -103,23 +147,70 @@ namespace UP_01_Krasnova.Pages
             var btn = (Button)sender;
             switch (btn.Name)
             {
-                case "DeclineReportBtn": break;
-                case "DeclineUnfreezeBtn": break;
-                case "DeclineRoleBtn": break;
+                case "DeclineReportBtn":
+                    if (btn?.Tag is Report report)
+                    {
+                        Core.Context.Report.Remove(report);
+                        MessageBox.Show("Жалоба была отклонена!");
+                    }
+                    break;
+                case "DeclineUnfreezeBtn":
+                    if (btn?.Tag is UnFreezeApplication unFreeze)
+                    {
+                        unFreeze.StatusID = 3;
+                        MessageBox.Show("Разморозка была отклонена!");
+                    }
+                    break;
+                case "DeclineRoleBtn":
+                    if (btn?.Tag is RoleApplication roleApp)
+                    {
+                        roleApp.StatusID = 3;
+                        MessageBox.Show("Изменение роли было отклонено!");
+                    }
+                    break;
                 default: break;
             }
+            
+            Core.Context.SaveChanges();
+            UpdateAllLB();
+        }
+
+
+
+        private void Change(User user, int roleID)
+        {
+            if (user.RoleID != roleID)
+            {
+                user.RoleID = roleID;
+                MessageBox.Show($"Роль пользователя {user.Username} был была изменена на {user.Role.Name}");
+                Core.Context.SaveChanges();
+            }
+            else { MessageBox.Show($"Роль {user.Role.Name} совпадает с текущей. Нет изменений"); }
         }
 
         private void ChangeRole_Click(object sender, RoutedEventArgs e)
         {
-            var btn = (MenuItem)sender;
-            switch (btn.Name)
+            var mi = (MenuItem)sender;
+            User user = mi.DataContext as User;
+
+            if (user.UserID != State.CurrentUserID)
             {
-                case "ChangeRoleReaderMI": break;
-                case "ChangeRoleAuthorMI": break;
-                case "ChangeRoleAdminMI": break;
-                default: break;
+                switch (mi.Name)
+                {
+                    case "ChangeRoleReaderMI":
+                        Change(user, 3);
+                        break;
+                    case "ChangeRoleAuthorMI":
+                        Change(user, 2);
+                        break;
+                    case "ChangeRoleAdminMI":
+                        Change(user, 1);
+                        break;
+                    default: break;
+                }
+                UpdateAllLB();
             }
+            else { MessageBox.Show("Нельзя изменить роль текущего пользователя!"); }
         }
 
         private void ChangePasswordBtn_Click(object sender, RoutedEventArgs e)
