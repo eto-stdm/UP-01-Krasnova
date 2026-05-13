@@ -9,6 +9,229 @@
       Title="AdminPage">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="45"></ColumnDefinition>
+            <ColumnDefinition Width="300"></ColumnDefinition>
+            <ColumnDefinition Width="300"></ColumnDefinition>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock Text="Страница админа" FontSize="16" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+            <Menu Margin="10">
+                <MenuItem x:Name="ReportsMI" Header="Жалобы" VerticalContentAlignment="Center" Height="30" Background="#dddddd" BorderBrush="Black" BorderThickness="1"/>
+                <MenuItem Header="Заявки на:" VerticalContentAlignment="Center" Height="30" Background="#dddddd" BorderBrush="Black" BorderThickness="1">
+                    <MenuItem x:Name="UnfreezeAppMI" Header="Снятие блокировки"  Click="ChangeList_Click"/>
+                    <MenuItem x:Name="RoleAppMI" Header="Роль автора"  Click="ChangeList_Click"/>
+                </MenuItem>
+                <MenuItem Header="Замороженные:" VerticalContentAlignment="Center" Height="30" Background="#dddddd" BorderBrush="Black" BorderThickness="1">
+                    <MenuItem x:Name="FrozenBooksMI" Header="Книги" Click="ChangeList_Click"/>
+                    <MenuItem x:Name="FrozenUsersMI" Header="Пользователи" Click="ChangeList_Click"/>
+                    <MenuItem x:Name="FrozenReviewsMI" Header="Отзывы" Click="ChangeList_Click"/>
+                </MenuItem>
+                <MenuItem x:Name="UsersMI" Header="Пользователи" VerticalContentAlignment="Center" Height="30" Background="#dddddd" BorderBrush="Black" BorderThickness="1" Click="ChangeList_Click"/>
+            </Menu>
+        </StackPanel>
+
+        <StackPanel x:Name="ReportsSP" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalAlignment="Center" Visibility="Collapsed">
+            <ListBox x:Name="ReportsLB" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible" VerticalAlignment="Center" Margin="10" Height="230" Width="580">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Height="50" Width="560" Margin="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="480"/>
+                                <ColumnDefinition Width="100"/>
+                            </Grid.ColumnDefinitions>
+
+                            <WrapPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="0">
+                                <TextBlock Text="{Binding User1.Username, StringFormat=Кто пожаловался: {0}}" Margin="0, 10, 10, 10"/>
+                                <TextBlock Text="На кого/что:" Margin="0, 10, 10, 10"/>
+                                <TextBlock Text="{Binding User.Username}" Margin="0, 10"/>
+                                <TextBlock Text="{Binding Review.Text}" Margin="0, 10"/>
+                                <TextBlock Text="{Binding Book.Name}" Margin="0, 10"/>
+                                <TextBlock Text="{Binding Reason, StringFormat=Причина: {0}}" Margin="10"/>
+                            </WrapPanel>
+                            <StackPanel Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                <Button x:Name="AcceptReportBtn" Content="Принять" FontSize="9" Height="20" Click="Accept_Click"/>
+                                <Button x:Name="DeclineReportBtn" Content="Отклонить" FontSize="9" Height="20" Click="Decline_Click"/>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+        </StackPanel>
+
+        <StackPanel x:Name="UnfreezeAppSP" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalAlignment="Center" Visibility="Collapsed">
+            <ListBox x:Name="UnfreezeAppLB" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible" VerticalAlignment="Center" Margin="10" Height="230" Width="580">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Height="50" Width="560" Margin="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="480"/>
+                                <ColumnDefinition Width="100"/>
+                            </Grid.ColumnDefinitions>
+
+                            <WrapPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="0">
+                                <TextBlock Text="{Binding Date, StringFormat=Дата: dd.MM.yyyy}" Margin="0, 10, 10, 10"/>
+                                <TextBlock Text="Кто/что:" Margin="0, 10, 10, 10"/>
+                                <TextBlock Text="{Binding User.Username}" Margin="0, 10"/>
+                                <TextBlock Text="{Binding Review.Text}" Margin="0, 10"/>
+                                <TextBlock Text="{Binding Book.Name}" Margin="0, 10"/>
+                                <TextBlock Text="{Binding Status, StringFormat=Статус: {0}}" Margin="10"/>
+                            </WrapPanel>
+                            <StackPanel Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                <Button x:Name="AcceptUnfreezeBtn" Content="Принять" FontSize="9" Height="20" Click="Accept_Click"/>
+                                <Button x:Name="DeclineUnfreezeBtn" Content="Отклонить" FontSize="9" Height="20" Click="Decline_Click"/>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+        </StackPanel>
+
+        <StackPanel x:Name="RoleAppSP" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalAlignment="Center" Visibility="Collapsed">
+            <ListBox x:Name="RoleAppLB" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible" VerticalAlignment="Center" Margin="10" Height="230" Width="580">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Height="50" Width="560" Margin="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="480"/>
+                                <ColumnDefinition Width="100"/>
+                            </Grid.ColumnDefinitions>
+
+                            <WrapPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="0">
+                                <TextBlock Text="{Binding ApplicationDate, StringFormat=Дата: dd.MM.yyyy}" Margin="0, 10, 10, 10"/>
+                                <TextBlock Text="{Binding User.Username, StringFormat=Пользователь: {0}}" Margin="0, 10"/>
+                                <TextBlock Text="{Binding Status, StringFormat=Статус: {0}}" Margin="10"/>
+                            </WrapPanel>
+                            <StackPanel Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                <Button x:Name="AcceptRoleBtn" Content="Принять" FontSize="9" Height="20" Click="Accept_Click"/>
+                                <Button x:Name="DeclineRoleBtn" Content="Отклонить" FontSize="9" Height="20" Click="Decline_Click"/>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+        </StackPanel>
+
+        <StackPanel x:Name="FrozenBooksSP" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalAlignment="Center" Visibility="Collapsed">
+            <ListBox x:Name="FrozenBooksLB" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible" VerticalAlignment="Center" Margin="10" Height="230" Width="580">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Height="50" Width="560" Margin="10">
+                            <WrapPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <TextBlock Text="{Binding Name, StringFormat=Название: {0}}" Margin="0, 10, 10, 10"/>
+                                <TextBlock Text="{Binding User.Username, StringFormat=Автор: {0}}" Margin="0, 10, 10, 10"/>
+                            </WrapPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+        </StackPanel>
+
+        <StackPanel x:Name="FrozenUsersSP" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalAlignment="Center" Visibility="Collapsed">
+            <ListBox x:Name="FrozenUsersLB" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible" VerticalAlignment="Center" Margin="10" Height="230" Width="580">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Height="50" Width="560" Margin="10">
+                            <WrapPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <TextBlock Text="{Binding Login, StringFormat=Логин: {0}}" Margin="0, 10, 10, 10"/>
+                                <TextBlock Text="{Binding User.Username, StringFormat=Отображаемое имя: {0}}" Margin="0, 10, 10, 10"/>
+                                <TextBlock Text="{Binding Email, StringFormat=Почта: {0}}" Margin="0, 10, 10, 10"/>
+                                <TextBlock Text="{Binding Role.Name, StringFormat=Роль: {0}}" Margin="0, 10, 10, 10"/>
+                            </WrapPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+        </StackPanel>
+
+        <StackPanel x:Name="FrozenReviewsSP" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalAlignment="Center" Visibility="Collapsed">
+            <ListBox x:Name="FrozenReviewsLB" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible" VerticalAlignment="Center" Margin="10" Height="230" Width="580">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Height="50" Width="560" Margin="10">
+                            <WrapPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <TextBlock Text="{Binding Book.Name, StringFormat=На какую книгу: {0}}" Margin="0, 10, 10, 10"/>
+                                <TextBlock Text="{Binding User.Username, StringFormat=Автор: {0}}" Margin="0, 10, 10, 10"/>
+                                <TextBlock Text="{Binding Rating, StringFormat=Оценка: {0}}" Margin="0, 10, 10, 10"/>
+                                <TextBlock Text="{Binding Text, StringFormat=Текст: {0}}" Margin="0, 10, 10, 10"/>
+                                <TextBlock Text="{Binding Date, StringFormat=Дата: dd.MM.yyyy}" Margin="0, 10, 10, 10"/>
+                            </WrapPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+        </StackPanel>
+
+        <StackPanel x:Name="UsersSP" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2" HorizontalAlignment="Center" Visibility="Collapsed">
+            <ListBox x:Name="UsersLB" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible" VerticalAlignment="Center" Margin="10" Height="230" Width="580">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Height="50" Width="560" Margin="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="480"/>
+                                <ColumnDefinition Width="100"/>
+                            </Grid.ColumnDefinitions>
+
+                            <WrapPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="0">
+                                <TextBlock Text="{Binding Login, StringFormat=Логин: {0}}" Margin="0, 10, 10, 10"/>
+                                <TextBlock Text="{Binding User.Username, StringFormat=Отображаемое имя: {0}}" Margin="0, 10, 10, 10"/>
+                                <TextBlock Text="{Binding Email, StringFormat=Почта: {0}}" Margin="0, 10, 10, 10"/>
+                                <TextBlock Text="{Binding Role.Name, StringFormat=Роль: {0}}" Margin="0, 10, 10, 10"/>
+                            </WrapPanel>
+                            <StackPanel Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+                                <Button x:Name="AcceptUnfreezeBtn" Content="Принять" FontSize="9" Height="20" Click="Accept_Click"/>
+                                <Button x:Name="DeclineUnfreezeBtn" Content="Отклонить" FontSize="9" Height="20" Click="Decline_Click"/>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+        </StackPanel>
     </Grid>
 </Page>

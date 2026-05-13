@@ -24,5 +24,6 @@ namespace UP_01_Krasnova
         public virtual Book Book { get; set; }
         public virtual Status Status { get; set; }
         public virtual User User { get; set; }
+        public virtual Review Review { get; set; }
     }
 }

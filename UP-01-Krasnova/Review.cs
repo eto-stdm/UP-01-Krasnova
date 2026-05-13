@@ -14,6 +14,13 @@ namespace UP_01_Krasnova
     
     public partial class Review
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Review()
+        {
+            this.Report = new HashSet<Report>();
+            this.UnFreezeApplication = new HashSet<UnFreezeApplication>();
+        }
+    
         public int ReviewID { get; set; }
         public int BookID { get; set; }
         public int UserID { get; set; }
@@ -24,5 +31,9 @@ namespace UP_01_Krasnova
     
         public virtual Book Book { get; set; }
         public virtual User User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Report> Report { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UnFreezeApplication> UnFreezeApplication { get; set; }
     }
 }

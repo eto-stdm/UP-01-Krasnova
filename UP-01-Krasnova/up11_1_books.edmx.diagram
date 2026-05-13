@@ -35,6 +35,8 @@
         <AssociationConnector Association="up11_1_booksModel.FK_RoleApplication_User" ManuallyRouted="false" />
         <AssociationConnector Association="up11_1_booksModel.FK_UnFreezeApplication_Status" ManuallyRouted="false" />
         <AssociationConnector Association="up11_1_booksModel.FK_UnFreezeApplication_User" ManuallyRouted="false" />
+        <AssociationConnector Association="up11_1_booksModel.FK_Report_Review" />
+        <AssociationConnector Association="up11_1_booksModel.FK_UnFreezeApplication_Review" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

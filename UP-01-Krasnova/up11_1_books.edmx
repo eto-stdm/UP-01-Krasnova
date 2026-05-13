@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище up11_1_booksModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище up11_1_booksModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Book">
           <Key>
             <PropertyRef Name="BookID" />
@@ -212,6 +212,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Report_Review">
+          <End Role="Review" Type="Self.Review" Multiplicity="0..1" />
+          <End Role="Report" Type="Self.Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Review">
+              <PropertyRef Name="ReviewID" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="ReviewID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Report_User">
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Report" Type="Self.Report" Multiplicity="*" />
@@ -296,6 +308,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UnFreezeApplication_Review">
+          <End Role="Review" Type="Self.Review" Multiplicity="0..1" />
+          <End Role="UnFreezeApplication" Type="Self.UnFreezeApplication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Review">
+              <PropertyRef Name="ReviewID" />
+            </Principal>
+            <Dependent Role="UnFreezeApplication">
+              <PropertyRef Name="ReviewID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_UnFreezeApplication_Status">
           <End Role="Status" Type="Self.Status" Multiplicity="1" />
           <End Role="UnFreezeApplication" Type="Self.UnFreezeApplication" Multiplicity="*" />
@@ -374,6 +398,10 @@
             <End Role="Book" EntitySet="Book" />
             <End Role="Report" EntitySet="Report" />
           </AssociationSet>
+          <AssociationSet Name="FK_Report_Review" Association="Self.FK_Report_Review">
+            <End Role="Review" EntitySet="Review" />
+            <End Role="Report" EntitySet="Report" />
+          </AssociationSet>
           <AssociationSet Name="FK_Report_User" Association="Self.FK_Report_User">
             <End Role="User" EntitySet="User" />
             <End Role="Report" EntitySet="Report" />
@@ -402,6 +430,10 @@
             <End Role="Book" EntitySet="Book" />
             <End Role="UnFreezeApplication" EntitySet="UnFreezeApplication" />
           </AssociationSet>
+          <AssociationSet Name="FK_UnFreezeApplication_Review" Association="Self.FK_UnFreezeApplication_Review">
+            <End Role="Review" EntitySet="Review" />
+            <End Role="UnFreezeApplication" EntitySet="UnFreezeApplication" />
+          </AssociationSet>
           <AssociationSet Name="FK_UnFreezeApplication_Status" Association="Self.FK_UnFreezeApplication_Status">
             <End Role="Status" EntitySet="Status" />
             <End Role="UnFreezeApplication" EntitySet="UnFreezeApplication" />
@@ -415,8 +447,7 @@
             <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="up11_1_booksModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -490,6 +521,7 @@
           <NavigationProperty Name="Book" Relationship="Self.FK_Report_Book" FromRole="Report" ToRole="Book" />
           <NavigationProperty Name="User" Relationship="Self.FK_Report_User" FromRole="Report" ToRole="User" />
           <NavigationProperty Name="User1" Relationship="Self.FK_Report_User1" FromRole="Report" ToRole="User" />
+          <NavigationProperty Name="Review" Relationship="up11_1_booksModel.FK_Report_Review" FromRole="Report" ToRole="Review" />
         </EntityType>
         <EntityType Name="Review">
           <Key>
@@ -504,6 +536,8 @@
           <Property Name="IsFrozen" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Book" Relationship="Self.FK_Review_Book" FromRole="Review" ToRole="Book" />
           <NavigationProperty Name="User" Relationship="Self.FK_Review_User" FromRole="Review" ToRole="User" />
+          <NavigationProperty Name="Report" Relationship="up11_1_booksModel.FK_Report_Review" FromRole="Review" ToRole="Report" />
+          <NavigationProperty Name="UnFreezeApplication" Relationship="up11_1_booksModel.FK_UnFreezeApplication_Review" FromRole="Review" ToRole="UnFreezeApplication" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -556,6 +590,7 @@
           <NavigationProperty Name="Book" Relationship="Self.FK_UnFreezeApplication_Book" FromRole="UnFreezeApplication" ToRole="Book" />
           <NavigationProperty Name="Status" Relationship="Self.FK_UnFreezeApplication_Status" FromRole="UnFreezeApplication" ToRole="Status" />
           <NavigationProperty Name="User" Relationship="Self.FK_UnFreezeApplication_User" FromRole="UnFreezeApplication" ToRole="User" />
+          <NavigationProperty Name="Review" Relationship="up11_1_booksModel.FK_UnFreezeApplication_Review" FromRole="UnFreezeApplication" ToRole="Review" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -863,7 +898,39 @@
             <End Role="User" EntitySet="User" />
             <End Role="UnFreezeApplication" EntitySet="UnFreezeApplication" />
           </AssociationSet>
+          <AssociationSet Name="FK_Report_Review" Association="up11_1_booksModel.FK_Report_Review">
+            <End Role="Review" EntitySet="Review" />
+            <End Role="Report" EntitySet="Report" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UnFreezeApplication_Review" Association="up11_1_booksModel.FK_UnFreezeApplication_Review">
+            <End Role="Review" EntitySet="Review" />
+            <End Role="UnFreezeApplication" EntitySet="UnFreezeApplication" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Report_Review">
+          <End Type="up11_1_booksModel.Review" Role="Review" Multiplicity="0..1" />
+          <End Type="up11_1_booksModel.Report" Role="Report" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Review">
+              <PropertyRef Name="ReviewID" />
+            </Principal>
+            <Dependent Role="Report">
+              <PropertyRef Name="ReviewID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UnFreezeApplication_Review">
+          <End Type="up11_1_booksModel.Review" Role="Review" Multiplicity="0..1" />
+          <End Type="up11_1_booksModel.UnFreezeApplication" Role="UnFreezeApplication" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Review">
+              <PropertyRef Name="ReviewID" />
+            </Principal>
+            <Dependent Role="UnFreezeApplication">
+              <PropertyRef Name="ReviewID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
