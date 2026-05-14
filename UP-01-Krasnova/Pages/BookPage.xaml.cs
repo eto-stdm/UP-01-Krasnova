@@ -36,8 +36,8 @@ namespace UP_01_Krasnova.Pages
             if (Core.Context.User.First(x => x.UserID == State.CurrentUserID).Role.Name == "Admin")
             {
                 FrozeMenu.Visibility = Visibility.Visible;
-                //ReviewsLB.Items.FrozeReviewMenu.Visibility = Visibility.Visible;
             }
+            CoverImg.Source = new BitmapImage(new Uri(book.Cover, UriKind.Relative));
             NameTB.Text += book.Name;
             DescriptionTB.Text += book.Description;
             AuthorTB.Text += book.User.Username;

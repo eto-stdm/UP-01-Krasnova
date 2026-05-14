@@ -46,6 +46,7 @@ namespace UP_01_Krasnova.Windows
                             ComplainantID = State.CurrentUserID,
                             BookID = book.BookID,
                             Reason = TextTB.Text,
+                            IsDone = false,
                         };
                         break;
                     case "автора":
@@ -55,6 +56,7 @@ namespace UP_01_Krasnova.Windows
                             ComplainantID = State.CurrentUserID,
                             UserID = user.UserID,
                             Reason = TextTB.Text,
+                            IsDone = false,
                         };
                         break;
                     case "отзыв":
@@ -64,6 +66,7 @@ namespace UP_01_Krasnova.Windows
                             ComplainantID = State.CurrentUserID,
                             ReviewID = review.ReviewID,
                             Reason = TextTB.Text,
+                            IsDone = false,
                         };
                         break;
                     default: break;

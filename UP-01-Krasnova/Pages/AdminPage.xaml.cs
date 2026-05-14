@@ -43,7 +43,7 @@ namespace UP_01_Krasnova.Pages
 
         private void UpdateAllLB()
         {
-            ReportsLB.ItemsSource = Core.Context.Report.ToList();
+            ReportsLB.ItemsSource = Core.Context.Report.Where(x => x.IsDone == false).ToList();
             UnfreezeAppLB.ItemsSource = Core.Context.UnFreezeApplication.Where(x => x.StatusID == 1).ToList();
             RoleAppLB.ItemsSource = Core.Context.RoleApplication.Where(x => x.StatusID == 1).ToList();
             FrozenBooksLB.ItemsSource = Core.Context.Book.Where(x => x.IsFrozen == true).ToList();
@@ -105,7 +105,7 @@ namespace UP_01_Krasnova.Pages
                         {
                             Core.Context.Book.FirstOrDefault(x => x.BookID == report.BookID).IsFrozen = true;
                         }
-                        Core.Context.Report.Remove(report);
+                        report.IsDone = true;
                         MessageBox.Show("Жалоба была принята!");
                     }
                     break;
@@ -150,7 +150,7 @@ namespace UP_01_Krasnova.Pages
                 case "DeclineReportBtn":
                     if (btn?.Tag is Report report)
                     {
-                        Core.Context.Report.Remove(report);
+                        report.IsDone = true;
                         MessageBox.Show("Жалоба была отклонена!");
                     }
                     break;
@@ -170,12 +170,9 @@ namespace UP_01_Krasnova.Pages
                     break;
                 default: break;
             }
-            
             Core.Context.SaveChanges();
             UpdateAllLB();
         }
-
-
 
         private void Change(User user, int roleID)
         {

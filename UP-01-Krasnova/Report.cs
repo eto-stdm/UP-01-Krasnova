@@ -20,6 +20,7 @@ namespace UP_01_Krasnova
         public Nullable<int> ReviewID { get; set; }
         public Nullable<int> BookID { get; set; }
         public string Reason { get; set; }
+        public bool IsDone { get; set; }
     
         public virtual Book Book { get; set; }
         public virtual User User { get; set; }

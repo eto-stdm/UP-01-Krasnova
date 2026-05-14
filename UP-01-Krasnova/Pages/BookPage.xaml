@@ -26,7 +26,7 @@
             <TextBlock Text="Страница книги" FontSize="16" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </StackPanel>
 
-        <Image x:Name="CoverImg" Source="/Images/Image.PNG" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"/>
+        <Image x:Name="CoverImg" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"/>
 
         <StackPanel Grid.Column="3" Grid.Row="1">
             <TextBlock x:Name="NameTB" Text="Название: " Margin="10"/>

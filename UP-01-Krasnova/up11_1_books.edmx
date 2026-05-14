@@ -59,6 +59,7 @@
           <Property Name="ReviewID" Type="int" />
           <Property Name="BookID" Type="int" />
           <Property Name="Reason" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsDone" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Review">
           <Key>
@@ -522,6 +523,7 @@
           <NavigationProperty Name="User" Relationship="Self.FK_Report_User" FromRole="Report" ToRole="User" />
           <NavigationProperty Name="User1" Relationship="Self.FK_Report_User1" FromRole="Report" ToRole="User" />
           <NavigationProperty Name="Review" Relationship="up11_1_booksModel.FK_Report_Review" FromRole="Report" ToRole="Review" />
+          <Property Name="IsDone" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="Review">
           <Key>
@@ -989,6 +991,7 @@
           <EntitySetMapping Name="Report">
             <EntityTypeMapping TypeName="up11_1_booksModel.Report">
               <MappingFragment StoreEntitySet="Report">
+                <ScalarProperty Name="IsDone" ColumnName="IsDone" />
                 <ScalarProperty Name="ReportID" ColumnName="ReportID" />
                 <ScalarProperty Name="ComplainantID" ColumnName="ComplainantID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />

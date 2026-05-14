@@ -69,7 +69,9 @@ namespace UP_01_Krasnova.Pages
                 }
                 else
                 {
-                    UnfreezeAccTB.Text += Core.Context.Report.First(x => x.UserID == State.CurrentUserID).Reason;
+                    List<Report> reportsDes = Core.Context.Report.ToList();
+                    reportsDes.OrderByDescending(x => x.ReportID);
+                    UnfreezeAccTB.Text += reportsDes.First(x => x.UserID == State.CurrentUserID && x.IsDone == true).Reason;
                 }
             }
         }
